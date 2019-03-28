@@ -200,10 +200,8 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         cell.grade.text = ""
         cell.grade.isHidden = true
         cell.username.font = UIFont.systemFont(ofSize: 15.0, weight: .medium)
-        if member.unreadMessageCount == nil {
-            cell.grade.isHidden = false
-        } else if member.unreadMessageCount! > 0 {
-            cell.grade.text = String(member.unreadMessageCount!)
+        if member.unreadMessageCount > 0 {
+            cell.grade.text = String(member.unreadMessageCount)
             cell.grade.isHidden = false
             cell.username.font = UIFont.systemFont(ofSize: 15.0, weight: .heavy)
         }

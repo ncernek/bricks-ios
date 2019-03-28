@@ -6,7 +6,7 @@ struct Member {
     var pointsTotal: Int
     var displayTask: Task? = nil
     var tasks: [Task]
-    var unreadMessageCount: Int? = nil
+    var unreadMessageCount: Int = 0
     
     init(username: String, userId: Int, memberId: Int, pointsTotal: Int, displayTask: Task? = nil, tasks: [Task] = [Task]()) {
         self.username = username
