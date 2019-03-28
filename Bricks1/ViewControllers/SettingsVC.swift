@@ -1,11 +1,3 @@
-//
-//  SettingsVC.swift
-//  Bricks1
-//
-//  Created by Nico Cernek on 2/19/19.
-//  Copyright © 2019 Nico Cernek. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import FirebaseUI

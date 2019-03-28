@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
     
     /// override the default auth picker VC, so you can style it with the Custom class
     func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
-        return FUICustomAuthPickerViewController(nibName: nil, //"FUICustomAuthPickerViewController",
+        return LoginVC(nibName: nil, //"FUICustomAuthPickerViewController",
                                                  bundle: Bundle.main,
                                                  authUI: authUI)
     }

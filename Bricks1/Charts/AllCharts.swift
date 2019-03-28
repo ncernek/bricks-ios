@@ -50,20 +50,20 @@ func updatePieChart(_ streak: Int = 20, goal: Int = 30, pieChartView: PieChartVi
     dataSet.highlightEnabled = false
     dataSet.selectionShift = 0
     
-    pieChart.data = PieChartData(dataSet: dataSet)
+    pieChartView.data = PieChartData(dataSet: dataSet)
     
     // FORMATTING
     
     // turn off features
-    pieChart.legend.enabled = false
+    pieChartView.legend.enabled = false
     //        pieChart.chartDescription?.enabled = false
-    pieChart.isUserInteractionEnabled = false
+    pieChartView.isUserInteractionEnabled = false
     
     // format art
-    pieChart.rotationAngle = 270
+    pieChartView.rotationAngle = 270
     
     
     // add labels
-    pieChart.centerText = String(streak)
+    pieChartView.centerText = String(streak)
     
 }

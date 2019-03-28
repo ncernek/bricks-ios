@@ -1,30 +1,30 @@
-import UIKit
-import GoogleSignIn
+import FirebaseUI
 
-// instructions to add Google Sign in
-// https://developers.google.com/identity/sign-in/ios/start-integrating
-class LoginVC: UIViewController, GIDSignInUIDelegate {
-    
-    @IBOutlet weak var signInButton: GIDSignInButton!
+class LoginVC: FUIAuthPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-        
-        // automatically sign in the user.
-        // https://developers.google.com/identity/sign-in/ios/sign-in?ver=swift
-        GIDSignIn.sharedInstance().signInSilently()
-        
     }
     
-    @IBAction func triggerDemoLogin(_ sender: Any) {
-        let config = AppConfig()
-//        store.dispatch(ActionSaveAuthTokenAndUID(authToken: config.DEMO_ACCOUNT_GOOGLE_ID, userId: 46))
-        store.dispatch(ActionSaveUsername(username: "Joseph Smith"))
-        store.dispatch(ActionSaveGoogleToken(googleToken: config.DEMO_ACCOUNT_GOOGLE_ID))
-        Fetch.login(config.DEMO_ACCOUNT_GOOGLE_ID)
-//        Fetch.refreshData()
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        view.backgroundColor = .white
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        label.text = "Bricks"
+        label.font = label.font.withSize(40)
+
+        
+        label.center.x = view.center.x
+        label.center.y = view.center.y - 200
+        label.textAlignment = .center
+        
+        self.view.addSubview(label)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 }
