@@ -1087,17 +1087,17 @@ Cg
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading your data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-o2-foo">
-                                <rect key="frame" x="114.5" y="433.5" width="185.5" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading your data..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-o2-foo">
+                                <rect key="frame" x="131.5" y="292" width="151.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="7SB-o2-foo" firstAttribute="top" secondItem="4dM-lt-PA5" secondAttribute="bottom" constant="20" id="Ayh-T8-Jft"/>
                             <constraint firstItem="7SB-o2-foo" firstAttribute="centerX" secondItem="3og-bp-HsH" secondAttribute="centerX" id="FPd-3B-avh"/>
-                            <constraint firstItem="7SB-o2-foo" firstAttribute="centerY" secondItem="3og-bp-HsH" secondAttribute="centerY" id="FgX-Xm-mtC"/>
                             <constraint firstItem="4dM-lt-PA5" firstAttribute="centerX" secondItem="3og-bp-HsH" secondAttribute="centerX" id="V0E-pg-vCt"/>
                             <constraint firstItem="4dM-lt-PA5" firstAttribute="centerY" secondItem="3og-bp-HsH" secondAttribute="centerY" constant="-200" id="uTa-mA-pML"/>
                         </constraints>

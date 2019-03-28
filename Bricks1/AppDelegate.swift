@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
     }
     
     // FIREBASE AUTH METHODS
+    // https://firebase.google.com/docs/auth/ios/firebaseui
     
     /// handle response from the Google part of Firebase Auth
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
