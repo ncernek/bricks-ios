@@ -13,13 +13,10 @@ func setVCforLogin(loggedIn: Bool = false) {
     
     
     if let currentUser = Auth.auth().currentUser { // FIR caches user from previous session
-        
-        // save FIR user to state
-        
         if loggedIn {
             rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navigationVC") as! UINavigationController
         } else {
-            rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loadingVC") as! UIViewController
+            rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loadingVC") 
             loginToBackend(currentUser)
         }
     } else {
@@ -30,8 +27,6 @@ func setVCforLogin(loggedIn: Bool = false) {
     appDelegate.window?.makeKeyAndVisible()
 
 }
-
-
 
 
 func loginToBackend(_ currentUser: User) {

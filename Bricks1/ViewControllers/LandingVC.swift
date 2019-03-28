@@ -1,5 +1,4 @@
 import UIKit
-import GoogleSignIn
 import ReSwift
 import Firebase
 import Charts
@@ -17,10 +16,8 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var pointsTotalLabel: UILabel!
-    @IBOutlet var barChartView: BarChartView!
+    @IBOutlet var barChart: BarChartView!
     @IBOutlet var pieChart: PieChartView!
-    
-    
     
     @IBOutlet var taskButton: UIButton!
     @IBOutlet var taskButtonLabel: UILabel!
@@ -47,10 +44,12 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         configureTableView()
         configureViews()
         configureFirebase()
+        
+        // set up Firestore threads for each member on each team
         _ = Threads()
         
-        updateBarChart(store.state.weeklyGrades)
-        updatePieChart(store.state.streak)
+        updateBarChart(store.state.weeklyGrades, barChartView: barChart)
+        updatePieChart(store.state.streak, pieChartView: pieChart)
     }
     
     func configureTableView() {
@@ -63,77 +62,7 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     }
     
     func configureFirebase() {
-        if FirebaseApp.app() == nil {
-            FirebaseApp.configure()
-        }
         Messaging.messaging().delegate = self
-    }
-    
-    func updateBarChart(_ weeklyGrades: [Int]) {
-        
-        var allDataEntries = [BarChartDataEntry]()
-        for (i, value) in weeklyGrades.enumerated() {
-            allDataEntries.append(BarChartDataEntry(x:Double(i), y: Double(value)))
-        }
-        
-        let chartDataSet = BarChartDataSet(values: allDataEntries, label: nil)
-        chartDataSet.setColor(UIColor.defaultGreen)
-        chartDataSet.drawValuesEnabled = false
-        chartDataSet.highlightEnabled = false
-
-        let chartData = BarChartData(dataSet: chartDataSet)
-        barChartView.data = chartData
-        
-        // FORMATTING
-        
-        // turn off features
-        barChartView.leftAxis.enabled = false
-        barChartView.rightAxis.enabled = false
-        barChartView.legend.enabled = false
-        barChartView.drawValueAboveBarEnabled = false
-        
-        // format x axis
-        barChartView.xAxis.drawGridLinesEnabled = false
-        barChartView.xAxis.drawAxisLineEnabled = false
-        barChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
-        let days = ["M", "T", "W", "T", "F", "S", "S"]
-        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:days)
-        barChartView.xAxis.granularity = 1
-        
-        // format y axis
-        barChartView.leftAxis.axisMinimum = 0
-        barChartView.leftAxis.axisMaximum = 5
-        
-        barChartView.minOffset = 0
-        
-    }
-    
-    func updatePieChart(_ streak: Int = 20, goal: Int = 30) {
-        let streakEntry = PieChartDataEntry(value: Double(streak))
-        let goalEntry = PieChartDataEntry(value: Double(goal - streak))
-        
-        let dataSet = PieChartDataSet(values: [streakEntry, goalEntry], label: nil)
-        dataSet.colors = [UIColor.defaultGreen, UIColor.customGrey]
-        dataSet.drawValuesEnabled = false
-        dataSet.highlightEnabled = false
-        dataSet.selectionShift = 0
-        
-        pieChart.data = PieChartData(dataSet: dataSet)
-        
-        // FORMATTING
-        
-        // turn off features
-        pieChart.legend.enabled = false
-//        pieChart.chartDescription?.enabled = false
-        pieChart.isUserInteractionEnabled = false
-        
-        // format art
-        pieChart.rotationAngle = 270
-        
-        
-        // add labels
-        pieChart.centerText = String(streak)
-        
     }
     
     func configureViews() {
@@ -160,8 +89,6 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         }
     }
     
-
-    
     /// part of the StoreSubscriber Protocol
     /// TODO seems inefficient that there is a reload on every state change
     func newState(state: AppState) {
@@ -183,8 +110,8 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
             profileImage.image = store.state.image
         }
         
-        updateBarChart(state.weeklyGrades)
-        updatePieChart(state.streak)
+        updateBarChart(state.weeklyGrades, barChartView: barChart)
+        updatePieChart(state.streak, pieChartView: pieChart)
     }
     
     /// rerun get requests
@@ -260,9 +187,6 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
 
         cell.username.text = member.username
         cell.taskDescription.text = member.displayTask?.description ?? ""
-        
-
-//        if let grade = member.displayTask?.grade { cell.grade.text = String(grade) }
         
         cell.tomorrowLabel.isHidden = true
         if member.displayTask?.dueDate == naiveDate(delta: 1) { cell.tomorrowLabel.isHidden = false }

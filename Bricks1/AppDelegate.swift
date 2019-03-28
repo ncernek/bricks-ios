@@ -1,6 +1,5 @@
 import UIKit
 import UserNotifications
-import GoogleSignIn
 import ReSwift
 import FirebaseUI
 import Firebase
@@ -13,7 +12,7 @@ let store = Store(
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate { // GIDSignInDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
 
     var window: UIWindow?
     let appConfig = AppConfig()
@@ -23,7 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate { // GIDS
         // get control of notifications
         UNUserNotificationCenter.current().delegate = self
         
-        FirebaseApp.configure()
+        // set up Firebase Auth
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
         
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self
@@ -33,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate { // GIDS
             FUIEmailAuth()
         ]
         
+        // there is no "entry" VC set in Storyboard
         setVCforLogin()
         
         return true
@@ -62,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate { // GIDS
     }
     
     // FIREBASE AUTH METHODS
+    
+    /// handle response from the Google part of Firebase Auth
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
@@ -71,47 +76,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate { // GIDS
         return false
     }
     
+    /// this method runs after successful sign-in to Firebase Auth
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         if let error = error {
-            Alerts.confirmation(authViewController!, title: "Error", message: "Error signing in. Please try again.")
             print(error.localizedDescription)
         } else if let currentUser = user {
             loginToBackend(currentUser)
         }
     }
     
+    /// override the default auth picker VC, so you can style it with the Custom class
     func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
         return FUICustomAuthPickerViewController(nibName: nil, //"FUICustomAuthPickerViewController",
                                                  bundle: Bundle.main,
                                                  authUI: authUI)
     }
-    
-    // GOOGLE SIGN-IN METHODS
-    
-    
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-//        return GIDSignIn.sharedInstance().handle(url as URL?,
-//                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-//                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
-//    }
-    
-//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
-//              withError error: Error!) {
-//        if let error = error {
-//            print("\(error.localizedDescription)")
-//        } else {
-//            // Perform any operations on signed in user here.
-//            store.dispatch(ActionSaveGoogleToken(googleToken: user.authentication.idToken))
-//            store.dispatch(ActionSaveUsername(username: user.profile.name))
-//            let imageURL = user.profile.imageURL(withDimension: 100)
-//            Fetch.login(store.state.googleToken!)
-//            Fetch.getImage(imageURL!)
-//        }
-//    }
-//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-//              withError error: Error!) {
-//        // Perform any operations when the user disconnects from app here.
-//
-//    }
 }
 

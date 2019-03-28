@@ -276,7 +276,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="barChartView" destination="58A-95-pT6" id="Uma-1j-Vl9"/>
+                        <outlet property="barChart" destination="58A-95-pT6" id="ofL-WD-qcx"/>
                         <outlet property="pieChart" destination="KIW-o9-78j" id="aUI-2w-yQ3"/>
                         <outlet property="pointsTotalLabel" destination="Fs3-wF-kBm" id="3nf-YX-wD9"/>
                         <outlet property="profileImage" destination="plR-CZ-lEL" id="0dK-fZ-5oe"/>
