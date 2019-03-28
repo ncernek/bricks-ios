@@ -472,9 +472,10 @@ Cg
                                             <real key="NSStrokeWidth" value="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="1. ">
+                                    <fragment>
+                                        <string key="content">1.	</string>
                                         <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" metaFont="system" size="14.666666984558105"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                                 <tabStops>
@@ -489,10 +490,9 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">Access to your account is restricted by the use of Google Sign-In, a third-party authentication system in which you use your google account to authenticate your Bricks account. 
-</string>
+                                        <string key="content">Access to your account is restricted by the use of Firebase Auth, a third-party authentication system in which you use your google account or your email/password to authenticate your Bricks account. - Bricks does not have access to the login credentials you use for your google account.  - Bricks only records your firebase auth ID, as a way to match your Bricks account with the authentication process.</string>
                                         <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" metaFont="system" size="14.666666984558105"/>
                                             <real key="NSKern" value="0.0"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
@@ -510,73 +510,18 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">	a.	</string>
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" metaFont="system" size="14.666666984558105"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="72" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="47">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="natural" location="72">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">Bricks does not have access to the login credentials you use for your google account. 
+                                        <string key="content"> 
 </string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" metaFont="system" size="14.666666984558105"/>
                                             <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="72" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="36" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
                                                 <tabStops>
-                                                    <textTab alignment="left" location="47">
+                                                    <textTab alignment="left" location="11">
                                                         <options/>
                                                     </textTab>
-                                                    <textTab alignment="natural" location="72">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
-                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <real key="NSStrokeWidth" value="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">	b.	</string>
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" metaFont="system" size="14.666666984558105"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="72" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="47">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="natural" location="72">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">Bricks only records your google ID, as a way to match your Bricks account with the Google Sign-In process. 
-</string>
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" metaFont="system" size="14.666666984558105"/>
-                                            <real key="NSKern" value="0.0"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="72" minimumLineHeight="20" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="47">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="natural" location="72">
+                                                    <textTab alignment="natural" location="36">
                                                         <options/>
                                                     </textTab>
                                                 </tabStops>
