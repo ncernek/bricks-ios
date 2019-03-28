@@ -13,13 +13,18 @@ class Fetch {
         store.dispatch(FetchingLogin())
         promiseAuthToken(googleToken)
             .then { _ in
-                self.promisePutAppUser(["username": store.state.currentUser?.displayName!])
+                self.promisePutAppUser([
+                    "username": store.state.currentUser?.displayName!,
+                    "email": store.state.currentUser?.email!
+                    ])
             }.then { _ in
                 self.promiseGetTasks()
             }.then { _ in
                 self.promiseGetTeams()
             }.then { _ in
                 self.promiseGetStats()
+            }.then {_ in
+                self.promiseGetPhoto(store.state.currentUser?.photoURL)
             }.ensure {
                 store.dispatch(LoginCompleted())
             }.catch { error in
@@ -37,7 +42,7 @@ class Fetch {
                 self.promiseGetStats()
             }.then {_ in
                 self.promiseGetTeams()
-            }.ensure{
+            }.ensure {
                 if refreshControl != nil {
                     refreshControl?.endRefreshing()
                 }
@@ -117,7 +122,7 @@ class Fetch {
     }
     
     class func getImage(_ url: URL) {
-        self.promiseGetImage(url)
+        self.promiseGetPhoto(url)
     }
 
     
@@ -224,14 +229,15 @@ class Fetch {
         }
     }
     
-    class func promiseGetImage(_ url: URL) {
-        self.request("NONE", method: "GET", url: url)
-            .done {(data: Data?, response: URLResponse?) in
+    /// this method will always return Promise<true>
+    /// perhaps it should just go in an "ensure" closure?
+    class func promiseGetPhoto(_ url: URL?) -> Promise<Bool> {
+        guard let url = url else { return Promise<Bool> { seal in seal.fulfill(true) } }
+        return self.request("NONE", method: "GET", url: url)
+            .map {(data: Data?, response: URLResponse?) in
                 store.dispatch(ActionSaveImage(image: UIImage(data: data!)!))
-            }.catch { error in
-                // TODO make some sort of error alert
-                print(error.localizedDescription)
-        }
+                return true
+            }
     }
     
     /// get all user's teams, their members, and their tasks. includes current user

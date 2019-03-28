@@ -32,17 +32,13 @@ func setVCforLogin(loggedIn: Bool = false) {
 func loginToBackend(_ currentUser: User) {
     store.dispatch(SaveUserDetails(currentUser: currentUser))
     
-    if let photoURL = currentUser.photoURL {
-        Fetch.getImage(photoURL)
-    }
-    
+    // retrieve a refreshed fir_auth_token and request all data
     currentUser.getIDTokenForcingRefresh(true) { idToken, error in
         if let error = error {
             print(error.localizedDescription)
             return
         } else {
             // pass token to backend
-            print("TOKEN: ", idToken!)
             store.dispatch(ActionSaveGoogleToken(googleToken: idToken!))
             Fetch.login(store.state.googleToken!)
         }
