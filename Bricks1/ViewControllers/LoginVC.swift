@@ -17,4 +17,14 @@ class LoginVC: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().signInSilently()
         
     }
+    
+    @IBAction func triggerDemoLogin(_ sender: Any) {
+        let config = AppConfig()
+//        store.dispatch(ActionSaveAuthTokenAndUID(authToken: config.DEMO_ACCOUNT_GOOGLE_ID, userId: 46))
+        store.dispatch(ActionSaveUsername(username: "Joseph Smith"))
+        store.dispatch(ActionSaveGoogleToken(googleToken: config.DEMO_ACCOUNT_GOOGLE_ID))
+        Fetch.login(config.DEMO_ACCOUNT_GOOGLE_ID)
+//        Fetch.refreshData()
+    }
+    
 }

@@ -52,4 +52,9 @@ class AppConfig {
     var BUNDLE_ID : String {
         return config["BUNDLE_ID"] as! String
     }
+    
+    // DEMO
+    var DEMO_ACCOUNT_GOOGLE_ID : String {
+        return config["DEMO_ACCOUNT_GOOGLE_ID"] as! String
+    }
 }

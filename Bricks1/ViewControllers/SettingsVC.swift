@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-import GoogleSignIn
+import FirebaseUI
+
 
 class SettingsVC: UIViewController {
     
@@ -22,8 +23,9 @@ class SettingsVC: UIViewController {
     
     
     @IBAction func triggerSignOut(_ sender: AnyObject) {
-        GIDSignIn.sharedInstance().signOut()
-        print("user signed out")
+        let authUI = FUIAuth.defaultAuthUI()!
+        try? authUI.signOut()
+        setVCforLogin(loggedIn: false)
         store.dispatch(ActionLogOut())
     }
     

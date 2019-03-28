@@ -10,17 +10,19 @@ class Fetch {
     
     /// get user data at login: authToken, Teams
     class func login(_ googleToken: String) {
-        store.dispatch(ActionFetchingLogin())
+        store.dispatch(FetchingLogin())
         promiseAuthToken(googleToken)
             .then { _ in
-                self.promisePutAppUser(["username": store.state.username!])
+                self.promisePutAppUser(["username": store.state.currentUser?.displayName!])
             }.then { _ in
                 self.promiseGetTasks()
             }.then { _ in
                 self.promiseGetTeams()
             }.then { _ in
                 self.promiseGetStats()
-        }.catch { error in
+            }.ensure {
+                store.dispatch(LoginCompleted())
+            }.catch { error in
             // TODO create an alert with the error
             print("ERROR RUNNING login(): ", error.localizedDescription)
             print("FULL ERROR OBJECT", error)

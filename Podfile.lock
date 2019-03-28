@@ -8,6 +8,9 @@ PODS:
   - Charts (3.2.2):
     - Charts/Core (= 3.2.2)
   - Charts/Core (3.2.2)
+  - Firebase/Auth (5.17.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (= 5.3.1)
   - Firebase/Core (5.17.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.6.0)
@@ -32,6 +35,11 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.2.0)
+  - FirebaseAuth (5.3.1):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
   - FirebaseCore (5.3.0):
     - GoogleUtilities/Logger (~> 5.2)
@@ -65,6 +73,14 @@ PODS:
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Auth (6.1.1):
+    - Firebase/Auth (~> 5.0)
+    - GoogleUtilities/UserDefaults
+  - FirebaseUI/Email (6.1.1):
+    - FirebaseUI/Auth
+  - FirebaseUI/Google (6.1.1):
+    - FirebaseUI/Auth
+    - GoogleSignIn (~> 4.0)
   - GoogleAppMeasurement (5.6.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -148,6 +164,9 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - Firebase/Storage
+  - FirebaseUI/Auth
+  - FirebaseUI/Email
+  - FirebaseUI/Google
   - GoogleSignIn
   - MessageInputBar
   - MessageKit
@@ -162,12 +181,14 @@ SPEC REPOS:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
+    - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseStorage
+    - FirebaseUI
     - GoogleAppMeasurement
     - GoogleSignIn
     - GoogleToolboxForMac
@@ -190,12 +211,14 @@ SPEC CHECKSUMS:
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
   FirebaseAnalytics: 75e4bbc6417d190cc98ec1f17c41a4fad4c2c976
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
+  FirebaseAuth: 0f61e1329237da5682c49c9abd135e8f9d07a151
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: c0c4befb82374d6aef64d800e569f47625352edc
   FirebaseFirestore: e95af4fe30552092d6e72a8f97ea475d93891b75
   FirebaseInstanceID: 7221670e908b41e7ae669600db9d0d201417d0cd
   FirebaseMessaging: 08289db05bdc71d91fe70916de95bb0c3c86ca9b
   FirebaseStorage: 29075f874c2b3cf61e5221a62c4ceefc809e5412
+  FirebaseUI: 1345f778d53f9484f21474c7b10bba313b28a76b
   GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
@@ -212,6 +235,6 @@ SPEC CHECKSUMS:
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
 
-PODFILE CHECKSUM: 3c676a4cc876e02bba22971a5eabfd840333b84a
+PODFILE CHECKSUM: e0f4a12237b32f865df5b463a79b54503fe80c72
 
 COCOAPODS: 1.6.0

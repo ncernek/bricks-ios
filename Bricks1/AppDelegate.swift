@@ -2,6 +2,8 @@ import UIKit
 import UserNotifications
 import GoogleSignIn
 import ReSwift
+import FirebaseUI
+import Firebase
 
 // The global application store, which is responsible for managing the appliction state.
 let store = Store(
@@ -11,20 +13,27 @@ let store = Store(
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate { // GIDSignInDelegate
 
     var window: UIWindow?
     let appConfig = AppConfig()
+    var authViewController: UINavigationController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
         // get control of notifications
         UNUserNotificationCenter.current().delegate = self
         
-        // Initialize sign-in
-        GIDSignIn.sharedInstance().clientID = appConfig.CLIENT_ID
-        GIDSignIn.sharedInstance().delegate = self
+        FirebaseApp.configure()
+        
+        let authUI = FUIAuth.defaultAuthUI()
+        authUI?.delegate = self
+        
+        authUI?.providers = [
+            FUIGoogleAuth(),
+            FUIEmailAuth()
+        ]
+        
+        setVCforLogin()
         
         return true
     }
@@ -52,32 +61,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // FIREBASE AUTH METHODS
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        // other URL handling goes here.
+        return false
+    }
+    
+    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+        if let error = error {
+            Alerts.confirmation(authViewController!, title: "Error", message: "Error signing in. Please try again.")
+            print(error.localizedDescription)
+        } else if let currentUser = user {
+            loginToBackend(currentUser)
+        }
+    }
+    
+    func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
+        return FUICustomAuthPickerViewController(nibName: nil, //"FUICustomAuthPickerViewController",
+                                                 bundle: Bundle.main,
+                                                 authUI: authUI)
+    }
+    
     // GOOGLE SIGN-IN METHODS
     
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url as URL?,
-                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
-    }
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        return GIDSignIn.sharedInstance().handle(url as URL?,
+//                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+//    }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
-              withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            // Perform any operations on signed in user here.
-            store.dispatch(ActionSaveGoogleToken(googleToken: user.authentication.idToken))
-            store.dispatch(ActionSaveUsername(username: user.profile.name))
-            let imageURL = user.profile.imageURL(withDimension: 100)            
-            Fetch.login(store.state.googleToken!)
-            Fetch.getImage(imageURL!)
-        }
-    }
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-
-    }
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+//              withError error: Error!) {
+//        if let error = error {
+//            print("\(error.localizedDescription)")
+//        } else {
+//            // Perform any operations on signed in user here.
+//            store.dispatch(ActionSaveGoogleToken(googleToken: user.authentication.idToken))
+//            store.dispatch(ActionSaveUsername(username: user.profile.name))
+//            let imageURL = user.profile.imageURL(withDimension: 100)
+//            Fetch.login(store.state.googleToken!)
+//            Fetch.getImage(imageURL!)
+//        }
+//    }
+//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+//              withError error: Error!) {
+//        // Perform any operations when the user disconnects from app here.
+//
+//    }
 }
 

@@ -1,8 +1,11 @@
 import ReSwift
+import FirebaseUI
+
 
 struct AppState: StateType {
     var googleToken: String?
     var authToken: String?
+    var currentUser: User?
     
     var userId: Int?
     var username: String?

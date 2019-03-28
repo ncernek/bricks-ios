@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="50I-1j-fOT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1129,50 +1129,44 @@ Cg
             </objects>
             <point key="canvasLocation" x="3613.5999999999999" y="-230.73463268365819"/>
         </scene>
-        <!--Login VC-->
-        <scene sceneID="fqR-fa-MKz">
+        <!--View Controller-->
+        <scene sceneID="Am1-zi-gjd">
             <objects>
-                <viewController storyboardIdentifier="loginvc" title="Login VC" id="50I-1j-fOT" customClass="LoginVC" customModule="Bricks1" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sKs-SA-2hq">
+                <viewController storyboardIdentifier="loadingVC" id="KDF-c9-V06" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3og-bp-HsH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euG-eO-NCx" customClass="GIDSignInButton">
-                                <rect key="frame" x="30" y="478" width="354" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="vWP-lB-Hrx"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bricks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ul-Zm-JcM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bricks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dM-lt-PA5">
                                 <rect key="frame" x="154.5" y="224" width="105" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading your data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-o2-foo">
+                                <rect key="frame" x="114.5" y="433.5" width="185.5" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="euG-eO-NCx" firstAttribute="centerX" secondItem="sKs-SA-2hq" secondAttribute="centerX" id="2XE-5M-hQY"/>
-                            <constraint firstItem="0ul-Zm-JcM" firstAttribute="centerY" secondItem="sKs-SA-2hq" secondAttribute="centerY" constant="-200" id="44P-Kj-p0b"/>
-                            <constraint firstItem="0ul-Zm-JcM" firstAttribute="centerX" secondItem="sKs-SA-2hq" secondAttribute="centerX" id="59Z-IX-Sea"/>
-                            <constraint firstItem="TYe-Jr-QSI" firstAttribute="trailing" secondItem="euG-eO-NCx" secondAttribute="trailing" constant="30" id="5QW-2h-EkM"/>
-                            <constraint firstItem="euG-eO-NCx" firstAttribute="leading" secondItem="TYe-Jr-QSI" secondAttribute="leading" constant="30" id="GNG-YU-8VE"/>
-                            <constraint firstItem="euG-eO-NCx" firstAttribute="centerY" secondItem="sKs-SA-2hq" secondAttribute="centerY" constant="50" id="f41-0z-cnl"/>
+                            <constraint firstItem="7SB-o2-foo" firstAttribute="centerX" secondItem="3og-bp-HsH" secondAttribute="centerX" id="FPd-3B-avh"/>
+                            <constraint firstItem="7SB-o2-foo" firstAttribute="centerY" secondItem="3og-bp-HsH" secondAttribute="centerY" id="FgX-Xm-mtC"/>
+                            <constraint firstItem="4dM-lt-PA5" firstAttribute="centerX" secondItem="3og-bp-HsH" secondAttribute="centerX" id="V0E-pg-vCt"/>
+                            <constraint firstItem="4dM-lt-PA5" firstAttribute="centerY" secondItem="3og-bp-HsH" secondAttribute="centerY" constant="-200" id="uTa-mA-pML"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="TYe-Jr-QSI"/>
+                        <viewLayoutGuide key="safeArea" id="48f-GS-7x4"/>
                     </view>
-                    <connections>
-                        <outlet property="signInButton" destination="euG-eO-NCx" id="AgP-zU-DNS"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YNA-e4-FHi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J2E-Mm-mp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="133.5832083958021"/>
+            <point key="canvasLocation" x="271" y="134"/>
         </scene>
         <!--Item-->
         <scene sceneID="wKJ-nK-Okm">
             <objects>
-                <navigationController storyboardIdentifier="navigationvc" automaticallyAdjustsScrollViewInsets="NO" id="s5d-Mh-FwA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationVC" automaticallyAdjustsScrollViewInsets="NO" id="s5d-Mh-FwA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Whb-La-Qjw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="POh-TM-kqe">

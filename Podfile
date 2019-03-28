@@ -19,5 +19,10 @@ target 'Bricks1' do
   pod 'Firebase/Firestore'
   
   pod 'Charts'
+  
+  pod 'FirebaseUI/Auth'
+  
+  pod 'FirebaseUI/Google'
+  pod 'FirebaseUI/Email'
 
 end

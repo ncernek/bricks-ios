@@ -15,28 +15,26 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     case let action as ActionSaveGoogleToken:
         state.googleToken = action.googleToken
     
-    case let action as ActionSaveUsername:
-        state.username = action.username
+    case let action as SaveUserDetails:
+        state.currentUser = action.currentUser
     
     case let action as ActionSaveImage:
         state.image = action.image
         
-    case _ as ActionFetchingLogin:
+    case _ as FetchingLogin:
         state.fetchingLogIn = true
         
     case let action as ActionSaveAuthTokenAndUID:
         state.authToken = action.authToken
         state.userId = action.userId
-        
-        if state.loggedIn == false {
-            state.loggedIn = true
-            state.fetchingLogIn = false
-            switchViewControllers(loggedIn: true)
-        }
+    
+    case _ as LoginCompleted:
+        state.loggedIn = true
+        state.fetchingLogIn = false
+        setVCforLogin(loggedIn: true)
         
     case _ as ActionLogOut:
         state = AppState()
-        switchViewControllers(loggedIn: false)
     
     case let action as SaveStats:
         state.pointsTotal = action.pointsTotal

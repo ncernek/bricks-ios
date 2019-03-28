@@ -1,5 +1,5 @@
 import ReSwift
-
+import FirebaseUI
 
 struct ActionSaveFriendTasks: Action {
     let friendTasks: [Task]
@@ -18,7 +18,7 @@ struct ActionSaveAuthTokenAndUID: Action {
     let userId: Int
 }
 
-struct ActionFetchingLogin: Action {}
+struct FetchingLogin: Action {}
 
 struct ActionLogOut: Action {}
 
@@ -53,3 +53,9 @@ struct SaveUnreadMessageCount: Action {
     let memberIndex: Int
     let unreadMessageCount: Int
 }
+
+struct SaveUserDetails: Action {
+    let currentUser: User // FUI
+}
+
+struct LoginCompleted: Action {}
