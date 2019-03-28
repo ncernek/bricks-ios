@@ -23,6 +23,7 @@ func updateBarChart(_ weeklyGrades: [Int], barChartView: BarChartView) {
     barChartView.rightAxis.enabled = false
     barChartView.legend.enabled = false
     barChartView.drawValueAboveBarEnabled = false
+    barChartView.isUserInteractionEnabled = false
     
     // format x axis
     barChartView.xAxis.drawGridLinesEnabled = false
