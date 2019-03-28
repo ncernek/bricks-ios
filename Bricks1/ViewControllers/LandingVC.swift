@@ -152,18 +152,23 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell")! as! HeaderCell
         cell.teamName.text = store.state.teams[section].name
         cell.button.tag = section
-        cell.button.addTarget(self, action: #selector(presentTeamVC), for: .touchUpInside)
+//        cell.button.addTarget(self, action: #selector(presentTeamVC), for: .touchUpInside)
+        cell.button.addTarget(self, action: #selector(inviteFriend), for: .touchUpInside)
         
         
         return cell
     }
     
-    @objc func presentTeamVC(_ sender: UIButton) {
-        if let teamVC = storyboard?.instantiateViewController(withIdentifier: "Team") as? TeamVC {
-            teamVC.team = store.state.teams[sender.tag]
-            navigationController?.pushViewController(teamVC, animated: true)
-        }
+    @objc func inviteFriend(_ sender: UIButton) {
+        let team = store.state.teams[sender.tag]
+        Alerts.inviteFriend(self, team: team)
     }
+//    @objc func presentTeamVC(_ sender: UIButton) {
+//        if let teamVC = storyboard?.instantiateViewController(withIdentifier: "Team") as? TeamVC {
+//            teamVC.team = store.state.teams[sender.tag]
+//            navigationController?.pushViewController(teamVC, animated: true)
+//        }
+//    }
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
