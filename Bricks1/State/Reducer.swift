@@ -40,6 +40,8 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.pointsTotal = action.pointsTotal
         state.weeklyGrades = action.weeklyGrades
         state.streak = action.streak
+        state.rank = action.rank
+        state.totalUsers = action.totalUsers
     
     case let action as SaveDisplayTask:
         state.displayTask = action.task

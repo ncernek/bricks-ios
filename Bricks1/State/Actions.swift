@@ -38,6 +38,8 @@ struct SaveStats: Action {
     let pointsTotal: Int
     let weeklyGrades: [Int]
     let streak: Int
+    let rank: Int
+    let totalUsers: Int
 }
 
 struct SaveDisplayTask: Action {

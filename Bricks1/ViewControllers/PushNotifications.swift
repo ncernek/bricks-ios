@@ -13,7 +13,7 @@ extension LandingVC {
             if let error = error {
                 print("Error fetching remote instance ID: \(error)")
             } else if let result = result {
-               Fetch.putAppUser(["firebase_token": result.token])
+                print("FIREBASE TOKEN: ", result.token)
             }
         }
     }

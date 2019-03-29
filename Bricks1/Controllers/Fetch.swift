@@ -35,7 +35,7 @@ class Fetch {
     }
     
     class func refreshData(refreshControl: UIRefreshControl? = nil) {
-        promiseAuthToken(store.state.authToken!)
+        promiseAuthToken(store.state.googleToken!)
             .then {_ in
                 self.promiseGetTasks()
             }.then {_ in
@@ -55,7 +55,7 @@ class Fetch {
     
     /// put task data to backend, returns a task id
     class func putTask(_ task: Task) {
-        promiseAuthToken(store.state.authToken!)
+        promiseAuthToken(store.state.googleToken!)
             .then { _ in
                 self.promisePutTask(task)
             }.then { _ in
@@ -302,7 +302,14 @@ class Fetch {
                     let pointsTotal = json["points_total"] as! Int
                     let weeklyGrades = json["weekly_grades"] as! [Int]
                     let streak = json["streak"] as! Int
-                    store.dispatch(SaveStats(pointsTotal: pointsTotal, weeklyGrades: weeklyGrades, streak: streak))
+                    let rank = json["rank"] as! Int
+                    let totalUsers = json["total_users"] as! Int
+                    store.dispatch(SaveStats(
+                        pointsTotal: pointsTotal,
+                        weeklyGrades: weeklyGrades,
+                        streak: streak,
+                        rank: rank,
+                        totalUsers: totalUsers))
                     return true
                 }
         }
@@ -321,7 +328,6 @@ class Fetch {
         
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue(token, forHTTPHeaderField: "Authorization")
-        
         let timezone = TimeZone.current.description.components(separatedBy: " ")[0]
         request.setValue(timezone, forHTTPHeaderField: "TZ")
         
@@ -364,10 +370,11 @@ class Fetch {
             self.triggerConfirmation(title: "Error", message: json["message"]! as? String)
         } else {
             print("FETCH: ERROR: don't know how to handle it.")
-            let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any?]
+            // TODO Better ERROR HANDLING!!!!!
+//            let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any?]
             print("FETCH: STATUS CODE: ", httpResponse.statusCode)
-            print("FETCH: ERROR MESSAGE: ", json["message"]! as! String)
-            self.triggerConfirmation(title: "Error", message: json["message"]! as? String)
+//            print("FETCH: ERROR MESSAGE: ", json["message"]! as! String)
+            self.triggerConfirmation(title: "Error", message: "Please try again later.")
         }
         return false
     }

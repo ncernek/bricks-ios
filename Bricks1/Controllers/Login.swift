@@ -33,14 +33,15 @@ func loginToBackend(_ currentUser: User) {
     store.dispatch(SaveUserDetails(currentUser: currentUser))
     
     // retrieve a refreshed fir_auth_token and request all data
-    currentUser.getIDTokenForcingRefresh(true) { idToken, error in
+    currentUser.getIDToken() { idToken, error in
         if let error = error {
             print(error.localizedDescription)
             return
         } else {
             // pass token to backend
             store.dispatch(ActionSaveGoogleToken(googleToken: idToken!))
-            Fetch.login(store.state.googleToken!)
+            print("ID TOKEN: ", idToken)
+            Fetch.login(idToken!)
         }
     }
 }

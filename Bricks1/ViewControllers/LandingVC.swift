@@ -16,6 +16,10 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var pointsTotalLabel: UILabel!
+    
+    @IBOutlet var rank: UILabel!
+    @IBOutlet var totalUsers: UILabel!
+    
     @IBOutlet var barChart: BarChartView!
     @IBOutlet var pieChart: PieChartView!
     
@@ -112,6 +116,10 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         
         updateBarChart(state.weeklyGrades, barChartView: barChart)
         updatePieChart(state.streak, pieChartView: pieChart)
+        
+        print("RANK: ", state.rank)
+        rank.text = "\(state.rank)"
+        totalUsers.text = "/ \(state.totalUsers)"
     }
     
     /// rerun get requests
