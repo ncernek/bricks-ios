@@ -13,10 +13,11 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     
     typealias StoreSubscriberStateType = AppState
     
-    @IBOutlet var settingsButton: UIBarButtonItem!
-    @IBOutlet var profileImage: UIImageView!
-    @IBOutlet var pointsTotalLabel: UILabel!
+    @IBOutlet var profileImage: UIButton!
+    @IBOutlet var createTeamButton: UIButton!
     
+    // stats
+    @IBOutlet var pointsTotalLabel: UILabel!
     @IBOutlet var rank: UILabel!
     @IBOutlet var totalUsers: UILabel!
     
@@ -56,6 +57,16 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         updatePieChart(store.state.streak, pieChartView: pieChart)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     func configureTableView() {
         tableView.delegate = self
         
@@ -74,6 +85,11 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
         profileImage.layer.masksToBounds = false
         profileImage.clipsToBounds = true
+        
+        // configure add team button
+        createTeamButton.layer.cornerRadius = createTeamButton.frame.height / 2
+        createTeamButton.layer.masksToBounds = false
+        createTeamButton.clipsToBounds = true
         
         // configure taskButton image
         taskButton.layer.cornerRadius = taskButton.frame.height / 2
@@ -111,7 +127,7 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
         
         
         if store.state.image != nil {
-            profileImage.image = store.state.image
+            profileImage.setBackgroundImage(store.state.image, for: .normal)
         }
         
         updateBarChart(state.weeklyGrades, barChartView: barChart)
@@ -129,6 +145,11 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
 
     
     // USER INTERACTIVITY
+    
+    @IBAction func triggerCreateTeam(_ sender: Any) {
+        Alerts.createTeam(self)
+    }
+    
     
     @IBAction func triggerTaskAction(_ sender: Any) {
         var taskChosen = false
