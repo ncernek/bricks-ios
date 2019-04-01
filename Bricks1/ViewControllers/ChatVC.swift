@@ -72,6 +72,10 @@ final class ChatVC: MessagesViewController {
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        messageInputBar.inputTextView.becomeFirstResponder()
+    }
+    
     // MARK: - Helpers
     
     private func handleDocumentChange(_ change: DocumentChange) {

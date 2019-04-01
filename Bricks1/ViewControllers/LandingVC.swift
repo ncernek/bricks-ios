@@ -21,6 +21,7 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     @IBOutlet var rank: UILabel!
     @IBOutlet var totalUsers: UILabel!
     
+    
     @IBOutlet var barChart: BarChartView!
     @IBOutlet var pieChart: PieChartView!
     
@@ -148,6 +149,11 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     
     @IBAction func triggerCreateTeam(_ sender: Any) {
         Alerts.createTeam(self)
+    }
+    
+    
+    @IBAction func triggerRankInfo(_ sender: Any) {
+        Alerts.info(self, title: "How to calculate Rank", message: "To get your rank, we divide the number of tasks you submitted by the number of days you have been using the app. We then compare you to ALL other users.")
     }
     
     

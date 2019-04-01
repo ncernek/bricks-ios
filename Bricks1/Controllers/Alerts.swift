@@ -112,4 +112,16 @@ class Alerts {
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
         vc.present(alertController, animated: true, completion: nil)
     }
+    
+    class func info(_ vc: UIViewController, title: String, message: String) {
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        alertController.addAction(
+            UIAlertAction(title: "I don't get it", style: .default, handler: { action in
+                Alerts.giveFeedback(vc, message: "What is confusing?")
+            }))
+        vc.present(alertController, animated: true, completion: nil)
+    }
 }
