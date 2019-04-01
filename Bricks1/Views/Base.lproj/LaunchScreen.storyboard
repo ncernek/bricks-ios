@@ -18,28 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bricks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmT-51-v2j">
-                                <rect key="frame" x="112.5" y="208.5" width="150" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stack a Brick" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmT-51-v2j">
+                                <rect key="frame" x="37.5" y="158.5" width="300" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Kkf-YE-9XX"/>
+                                    <constraint firstAttribute="width" constant="300" id="Kkf-YE-9XX"/>
                                     <constraint firstAttribute="height" constant="50" id="d8Y-1I-Qp2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stackabrick_icon" translatesAutoresizingMaskIntoConstraints="NO" id="XqZ-gD-Rfc">
+                                <rect key="frame" x="112.5" y="283.5" width="150" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Dvy-kH-UYY"/>
+                                    <constraint firstAttribute="width" constant="150" id="GkA-xN-Zir"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lmT-51-v2j" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-100" id="KuK-6q-9XK"/>
+                            <constraint firstItem="XqZ-gD-Rfc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Gz-Hx-FwY"/>
+                            <constraint firstItem="lmT-51-v2j" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-150" id="KuK-6q-9XK"/>
                             <constraint firstItem="lmT-51-v2j" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="QNT-rM-U9c"/>
+                            <constraint firstItem="XqZ-gD-Rfc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="o4n-FW-Jwl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="stackabrick_icon" width="1782" height="1781"/>
+    </resources>
 </document>
