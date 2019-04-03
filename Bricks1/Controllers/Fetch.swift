@@ -9,9 +9,9 @@ class Fetch {
     // TOP LEVEL METHODS
     
     /// get user data at login: authToken, Teams
-    class func login(_ googleToken: String) {
+    class func login(_ firToken: String) {
         store.dispatch(FetchingLogin())
-        promiseAuthToken(googleToken)
+        promiseAuthToken(firToken)
             .then { _ in
                 self.promisePutAppUser([
                     "username": store.state.currentUser?.displayName!,
@@ -35,7 +35,7 @@ class Fetch {
     }
     
     class func refreshData(refreshControl: UIRefreshControl? = nil) {
-        promiseAuthToken(store.state.googleToken!)
+        promiseAuthToken(store.state.firToken!)
             .then {_ in
                 self.promiseGetTasks()
             }.then {_ in
@@ -55,7 +55,7 @@ class Fetch {
     
     /// put task data to backend, returns a task id
     class func putTask(_ task: Task) {
-        promiseAuthToken(store.state.googleToken!)
+        promiseAuthToken(store.state.firToken!)
             .then { _ in
                 self.promisePutTask(task)
             }.then { _ in
@@ -67,7 +67,7 @@ class Fetch {
         }
     
     class func putAppUser(_ params: [String: Any]) {
-        promiseAuthToken(store.state.googleToken!)
+        promiseAuthToken(store.state.firToken!)
             .then{ _ in
                 self.promisePutAppUser(params)
             }.catch { error in
@@ -77,7 +77,7 @@ class Fetch {
     }
     
     class func putTeam(_ name: String) {
-        promiseAuthToken(store.state.googleToken!)
+        promiseAuthToken(store.state.firToken!)
             .then { _ in
                 self.promisePutTeam(name)
             }.then { _ in
@@ -90,7 +90,7 @@ class Fetch {
     
     /// send phone number to backend to invite friend to this team
     class func postInvitation(phoneNumber: String, teamId: Int) {
-        promiseAuthToken(store.state.googleToken!)
+        promiseAuthToken(store.state.firToken!)
             .then { _ in
                 self.promisePostInvitation(phoneNumber: phoneNumber, teamId: teamId)
             }.catch { error in
@@ -100,7 +100,7 @@ class Fetch {
     }
     
     class func joinTeam(code: String) {
-        promiseAuthToken(store.state.googleToken!)
+        promiseAuthToken(store.state.firToken!)
             .then { _ in
                 self.promiseJoinTeam(code: code)
             }.then { _ in
@@ -112,7 +112,7 @@ class Fetch {
         }
     
     class func postFeedback(_ text: String) {
-        self.promiseAuthToken(store.state.googleToken!)
+        self.promiseAuthToken(store.state.firToken!)
             .then { _ in
                 self.promisePostFeedback(text)
             }.catch { error in
@@ -128,9 +128,9 @@ class Fetch {
     
     // PROMISES
 
-    class func promiseAuthToken(_ googleToken: String) -> Promise<Bool> {
+    class func promiseAuthToken(_ firToken: String) -> Promise<Bool> {
         return firstly {
-            self.request(googleToken, method: "GET", url: config.URL_AUTH_TOKEN)
+            self.request(firToken, method: "GET", url: config.URL_AUTH_TOKEN)
         }.map { (data: Data?, _) in
             self.responseGetAuthToken(data: data!)
         }

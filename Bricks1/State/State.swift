@@ -3,7 +3,7 @@ import FirebaseUI
 
 
 struct AppState: StateType {
-    var googleToken: String?
+    var firToken: String?
     var authToken: String?
     var currentUser: User?
     

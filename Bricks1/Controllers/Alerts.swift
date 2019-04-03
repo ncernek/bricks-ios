@@ -5,7 +5,7 @@ class Alerts {
     class func chooseTask(_ vc: UIViewController, dueDelta: Int) {
         var dayString = "Today"
         if dueDelta > 0 { dayString = "Tomorrow" }
-        let alertController = UIAlertController(title: "\(dayString)'s Task", message:
+        let alertController = UIAlertController(title: dayString, message:
             "What's your top task?", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "stack a brick"
@@ -101,7 +101,7 @@ class Alerts {
     }
     
     class func welcomeMenu(_ vc: UIViewController) {
-        let alertController = UIAlertController(title: "Welcome to Bricks!", message:
+        let alertController = UIAlertController(title: "Welcome!", message:
             "If you received a confirmation code, join your friend's team here. Otherwise, you can create a new team and invite your friends!", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Join a team", style: .default) { _ in
             joinTeam(vc)

@@ -12,8 +12,8 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.teams = action.teams
         Threads.makeThreads(action.teams)
         
-    case let action as ActionSaveGoogleToken:
-        state.googleToken = action.googleToken
+    case let action as SaveFIRToken:
+        state.firToken = action.firToken
     
     case let action as SaveUserDetails:
         state.currentUser = action.currentUser

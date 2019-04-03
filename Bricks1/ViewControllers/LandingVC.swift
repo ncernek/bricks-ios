@@ -4,7 +4,7 @@ import Firebase
 import Charts
 
 
-class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, MessagingDelegate, UITableViewDelegate, FetchDelegate {
+class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITableViewDelegate, FetchDelegate {
     
     // FetchDelegate protocol
     func confirmation(title: String, message: String) {
@@ -78,7 +78,7 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     }
     
     func configureFirebase() {
-        Messaging.messaging().delegate = self
+//        Messaging.messaging().delegate = self
     }
     
     func configureViews() {
@@ -153,7 +153,7 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, Messa
     
     
     @IBAction func triggerRankInfo(_ sender: Any) {
-        Alerts.info(self, title: "How to calculate Rank", message: "To get your rank, we divide the number of tasks you submitted by the number of days you have been using the app. We then compare you to ALL other users.")
+        Alerts.info(self, title: "How to calculate rank", message: "To get your rank, we divide the number of tasks you submitted by the number of days you have been using the app. We then compare you to ALL other users.")
     }
     
     

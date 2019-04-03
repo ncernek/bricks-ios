@@ -5,8 +5,8 @@ struct ActionSaveFriendTasks: Action {
     let friendTasks: [Task]
 }
 
-struct ActionSaveGoogleToken: Action {
-    let googleToken: String
+struct SaveFIRToken: Action {
+    let firToken: String
 }
 
 struct ActionSaveUsername: Action {

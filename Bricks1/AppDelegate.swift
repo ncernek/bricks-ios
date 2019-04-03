@@ -22,10 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
         // get control of notifications
         UNUserNotificationCenter.current().delegate = self
         
-        // set up Firebase Auth
-        if FirebaseApp.app() == nil {
-            FirebaseApp.configure()
-        }
+        // set up FirebaseApp - is used by all Firebase packages
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+//        if FirebaseApp.app() == nil {
+//            print("FIR configured")
+//            FirebaseApp.configure()
+//        }
         
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self

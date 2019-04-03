@@ -1,10 +1,10 @@
 import Firebase
 
-extension LandingVC {
+extension AppDelegate: MessagingDelegate {
     // FIREBASE MESSAGING
     // full reference : https://github.com/firebase/quickstart-ios/blob/e41348b60467d809c719b83173c826420d826ab2/messaging/MessagingExampleSwift/AppDelegate.swift
     
-    /// This callback is fired at each app startup and whenever a new token is generated.
+    /// This callback is fired at each Firebase app startup and whenever a new token is generated.
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         // If the registration token is new, send it to your application server.
         // Subscribe the registration token to topics. This is required only for new subscriptions or for situations where the user has re-installed the app.
@@ -13,7 +13,7 @@ extension LandingVC {
             if let error = error {
                 print("Error fetching remote instance ID: \(error)")
             } else if let result = result {
-                print("FIREBASE TOKEN: ", result.token)
+                Fetch.putAppUser(["fir_push_notif_token": result.token])
             }
         }
     }
