@@ -5,6 +5,9 @@ struct ActionSaveFriendTasks: Action {
     let friendTasks: [Task]
 }
 
+struct SaveFIRPushNotifToken: Action {
+    let token: String
+}
 struct SaveFIRToken: Action {
     let firToken: String
 }

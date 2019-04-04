@@ -12,8 +12,8 @@ class LoginVC: FUIAuthPickerViewController {
         
         view.backgroundColor = .white
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-        label.text = "Bricks"
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        label.text = "Stack a Brick"
         label.font = label.font.withSize(40)
 
         

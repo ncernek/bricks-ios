@@ -11,16 +11,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     /// handle device token from APNs
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let deviceToken = tokenParts.joined()
-        print("Device Token from APNs: \(deviceToken)")
-        Fetch.putAppUser(["device_token": deviceToken])
+//        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+//        let deviceToken = tokenParts.joined()
+//        print("Device Token from APNs: \(deviceToken)")
+//        Fetch.putAppUser(["device_token": deviceToken])
     }
     /// handle failed device token response
     func application(
         _ application: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register: \(error)")
+//        print("Failed to register: \(error)")
     }
 }
 

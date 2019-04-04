@@ -14,8 +14,9 @@ class Fetch {
         promiseAuthToken(firToken)
             .then { _ in
                 self.promisePutAppUser([
-                    "username": store.state.currentUser?.displayName!,
-                    "email": store.state.currentUser?.email!
+                    "username": store.state.currentUser?.displayName,
+                    "email": store.state.currentUser?.email,
+                    "fir_push_notif_token": store.state.firPushNotifToken
                     ])
             }.then { _ in
                 self.promiseGetTasks()

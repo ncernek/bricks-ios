@@ -11,6 +11,9 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     case let action as SaveTeams:
         state.teams = action.teams
         Threads.makeThreads(action.teams)
+    
+    case let action as SaveFIRPushNotifToken:
+        state.firPushNotifToken = action.token
         
     case let action as SaveFIRToken:
         state.firToken = action.firToken

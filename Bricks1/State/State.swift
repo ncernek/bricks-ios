@@ -3,6 +3,7 @@ import FirebaseUI
 
 
 struct AppState: StateType {
+    var firPushNotifToken : String?
     var firToken: String?
     var authToken: String?
     var currentUser: User?
