@@ -12,10 +12,11 @@ class Notifications {
         var title: String
         let isRepeating: Bool
         var hour: Int? = nil
+        var minute: Int? = nil
         var timeInterval: Double = 0.1
         
         init(notifId: String, title: String, body: String, category: String,
-             isRepeating: Bool, hour: Int? = nil, timeInterval: Double? = nil) {
+             isRepeating: Bool, hour: Int? = nil, minute: Int? = nil, timeInterval: Double? = nil) {
             self.notifId = notifId
             self.title = title
             self.body = body
@@ -23,6 +24,9 @@ class Notifications {
             self.isRepeating = isRepeating
             if let specified = hour {
                 self.hour = specified
+            }
+            if let specified = minute {
+                self.minute = specified
             }
             if let specified = timeInterval {
                 self.timeInterval = specified
@@ -36,7 +40,8 @@ class Notifications {
         body: "What's your top task today?",
         category: "REMINDERS",
         isRepeating: true,
-        hour: 8
+        hour: 12,
+        minute: 15
     )
 
     static let notifGradeTask = Notif(
