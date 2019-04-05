@@ -20,6 +20,7 @@ struct AppState: StateType {
     var streak: Int = 0
     var rank: Int = 0
     var totalUsers: Int = 0
+    var consistency: Double = 0.0
     
     var loggedIn: Bool = false
     var fetchingLogIn: Bool = false

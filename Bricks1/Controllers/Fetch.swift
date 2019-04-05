@@ -305,12 +305,14 @@ class Fetch {
                     let streak = json["streak"] as! Int
                     let rank = json["rank"] as! Int
                     let totalUsers = json["total_users"] as! Int
+                    let consistency = json["consistency"] as! Double
                     store.dispatch(SaveStats(
                         pointsTotal: pointsTotal,
                         weeklyGrades: weeklyGrades,
                         streak: streak,
                         rank: rank,
-                        totalUsers: totalUsers))
+                        totalUsers: totalUsers,
+                        consistency: consistency))
                     return true
                 }
         }

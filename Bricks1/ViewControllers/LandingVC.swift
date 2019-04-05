@@ -20,7 +20,7 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
     @IBOutlet var pointsTotalLabel: UILabel!
     @IBOutlet var rank: UILabel!
     @IBOutlet var totalUsers: UILabel!
-    
+    @IBOutlet var consistency: UILabel!
     
     @IBOutlet var barChart: BarChartView!
     @IBOutlet var pieChart: PieChartView!
@@ -134,9 +134,10 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         updateBarChart(state.weeklyGrades, barChartView: barChart)
         updatePieChart(state.streak, pieChartView: pieChart)
         
-        print("RANK: ", state.rank)
+        // stats
         rank.text = "\(state.rank)"
         totalUsers.text = "/ \(state.totalUsers)"
+        consistency.text = "\(state.consistency) tasks/day"
     }
     
     /// rerun get requests

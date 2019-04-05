@@ -45,6 +45,7 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.streak = action.streak
         state.rank = action.rank
         state.totalUsers = action.totalUsers
+        state.consistency = action.consistency
     
     case let action as SaveDisplayTask:
         state.displayTask = action.task
