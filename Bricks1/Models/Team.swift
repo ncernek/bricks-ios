@@ -23,13 +23,6 @@ struct Team {
         }
         self.otherMembers = otherMembers
         self.currentUser = currentUser
-        
-        // make a thread for each member
-//        var threads = [Thread]()
-//        for member in members {
-//            threads.append(Thread(currentUser: currentUser, threadOwner: member, uniqueTeamName: "\(name)-\(teamId)"))
-//        }
-//        self.threads = threads
     }
     
     
@@ -39,6 +32,13 @@ struct Team {
         for member in team["members"] as! [[String: Any?]] {
             members.append(Member.fromDict(member))
         }
+        // sort members by consistency
+        members.sort() { a, b in
+            if a.consistency > b.consistency { return true }
+            else { return false }
+        }
+        
+        
         return Team(
             name: team["name"] as! String,
             teamId: team["team_id"] as! Int,

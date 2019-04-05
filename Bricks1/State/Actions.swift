@@ -44,6 +44,7 @@ struct SaveStats: Action {
     let rank: Int
     let totalUsers: Int
     let consistency: Double
+    let countGradedTasks: Int
 }
 
 struct SaveDisplayTask: Action {

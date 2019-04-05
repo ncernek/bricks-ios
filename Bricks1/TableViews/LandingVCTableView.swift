@@ -22,6 +22,7 @@ class TaskCell: UITableViewCell {
     @IBOutlet var taskDescription: UILabel!
     @IBOutlet var grade: UILabel!
     @IBOutlet var tomorrowLabel: UILabel!
+    @IBOutlet var consistency: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

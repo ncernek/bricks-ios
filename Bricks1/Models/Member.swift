@@ -7,14 +7,16 @@ struct Member {
     var displayTask: Task? = nil
     var tasks: [Task]
     var unreadMessageCount: Int = 0
+    var consistency: Double
     
-    init(username: String, userId: Int, memberId: Int, pointsTotal: Int, displayTask: Task? = nil, tasks: [Task] = [Task]()) {
+    init(username: String, userId: Int, memberId: Int, pointsTotal: Int, displayTask: Task? = nil, tasks: [Task] = [Task](), consistency: Double) {
         self.username = username
         self.userId = userId
         self.memberId = memberId
         self.pointsTotal = pointsTotal
         self.displayTask = displayTask
         self.tasks = tasks
+        self.consistency = consistency
     }
     
     func toDict() -> [String: Any?] {
@@ -28,7 +30,8 @@ struct Member {
             "member_id": self.memberId,
             "points_total": self.pointsTotal,
             "display_task": self.displayTask,
-            "tasks": task_list
+            "tasks": task_list,
+            "consistency": self.consistency
         ]
     }
     
@@ -39,7 +42,8 @@ struct Member {
             memberId: 0,
             pointsTotal: 0,
             displayTask: nil,
-            tasks: [Task]()
+            tasks: [Task](),
+            consistency: 0
         )
     }
     
@@ -64,7 +68,8 @@ struct Member {
             memberId: member["member_id"] as! Int,
             pointsTotal: member["points_total"] as! Int,
             displayTask: displayTask,
-            tasks: tasks
+            tasks: tasks,
+            consistency: member["consistency"] as! Double
         )
     }
 }

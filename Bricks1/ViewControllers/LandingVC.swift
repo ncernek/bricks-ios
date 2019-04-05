@@ -17,9 +17,8 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
     @IBOutlet var createTeamButton: UIButton!
     
     // stats
-    @IBOutlet var pointsTotalLabel: UILabel!
+    @IBOutlet var countGradedTasks: UILabel!
     @IBOutlet var rank: UILabel!
-    @IBOutlet var totalUsers: UILabel!
     @IBOutlet var consistency: UILabel!
     
     @IBOutlet var barChart: BarChartView!
@@ -116,12 +115,13 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         print("LANDING_VC: reloading data.")
         setTaskButtons(state)
         tableView.reloadData()
-        pointsTotalLabel.text = String(state.pointsTotal) + " pts"
+        
         // set which task is being looked at
         
         yourTaskLabel.text = state.displayTask?.description ?? "What's your top task today?"
         yourGrade.text = ""
         
+        // TODO remove this
         if let grade = state.displayTask?.grade {
             yourGrade.text = String(grade)
         }
@@ -135,9 +135,9 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         updatePieChart(state.streak, pieChartView: pieChart)
         
         // stats
-        rank.text = "\(state.rank)"
-        totalUsers.text = "/ \(state.totalUsers)"
+        countGradedTasks.text = "tasks: \(state.countGradedTasks)"
         consistency.text = "\(state.consistency) tasks/day"
+        rank.text = "rank: \(state.rank) of \(state.totalUsers)"
     }
     
     /// rerun get requests
@@ -153,8 +153,8 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
     }
     
     
-    @IBAction func triggerRankInfo(_ sender: Any) {
-        Alerts.info(self, title: "How to calculate rank", message: "To get your rank, we divide the number of tasks you submitted by the number of days you have been using the app. We then compare you to ALL other users.")
+    @IBAction func triggerInfo(_ sender: Any) {
+        Alerts.info(self, title: "Calculations explained", message: "A task is only counted if you grade it.\n\ntasks/day : all tasks divided by number of days you've used the app.\n\nrank : tasks/day compared to all other users.\n\ntasks : total number of tasks")
     }
     
     
@@ -227,6 +227,7 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         let member = team.members[indexPath.row]
 
         cell.username.text = member.username
+        cell.consistency.text = String(member.consistency)
         cell.taskDescription.text = member.displayTask?.description ?? ""
         
         cell.tomorrowLabel.isHidden = true

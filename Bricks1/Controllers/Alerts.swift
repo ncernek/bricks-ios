@@ -114,8 +114,20 @@ class Alerts {
     }
     
     class func info(_ vc: UIViewController, title: String, message: String) {
-        let alertController = UIAlertController(title: title, message:
-            message, preferredStyle: .alert)
+        
+        // format message body
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+        let attributedMessage = NSMutableAttributedString(
+            string: message,
+            attributes: [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
+            ]
+        )
+        
+        let alertController = UIAlertController()
+        alertController.setValue(title, forKey: "title")
+        alertController.setValue(attributedMessage, forKey: "attributedMessage")
         
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         alertController.addAction(
