@@ -308,7 +308,7 @@ class Fetch {
                     let streak = json["streak"] as! Int
                     let rank = json["rank"] as! Int
                     let totalUsers = json["total_users"] as! Int
-                    let consistency = json["consistency"] as! Double
+                    let consistency = json["consistency"] as! Int
                     let countGradedTasks = json["count_graded_tasks"] as! Int
                     store.dispatch(SaveStats(
                         pointsTotal: pointsTotal,
@@ -396,4 +396,10 @@ class Fetch {
 
 protocol FetchDelegate: class {
     func confirmation(title: String, message: String)
+}
+
+extension LandingVC: FetchDelegate {
+    func confirmation(title: String, message: String) {
+        Alerts.confirmation(self, title: title, message: message)
+    }
 }

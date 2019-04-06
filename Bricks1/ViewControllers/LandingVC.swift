@@ -4,12 +4,7 @@ import Firebase
 import Charts
 
 
-class LandingVC: UIViewController, StoreSubscriber, FetchDelegate, UITableViewDataSource {
-    
-    // FetchDelegate protocol
-    func confirmation(title: String, message: String) {
-        Alerts.confirmation(self, title: title, message: message)
-    }
+class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
     
     typealias StoreSubscriberStateType = AppState
     
@@ -106,11 +101,11 @@ class LandingVC: UIViewController, StoreSubscriber, FetchDelegate, UITableViewDa
         }
     }
     
-    /// part of the StoreSubscriber Protocol
-    /// TODO seems inefficient that there is a reload on every state change
+    // STATE CHANGES
+    
     func newState(state: AppState) {
         print("LANDING_VC: reloading data.")
-        setTaskButtons(state)
+        setTaskButton(state)
         tableView.reloadData()
         
         // set which task is being looked at
@@ -132,9 +127,9 @@ class LandingVC: UIViewController, StoreSubscriber, FetchDelegate, UITableViewDa
         updatePieChart(state.streak, pieChartView: pieChart)
         
         // stats
-        countGradedTasks.text = "tasks: \(state.countGradedTasks)"
-        consistency.text = "\(state.consistency) tasks/day"
-        rank.text = "rank: \(state.rank) of \(state.totalUsers)"
+        consistency.text = "consistency: \(state.consistency)%"
+        rank.text = "rank: \(state.rank) / \(state.totalUsers)"
+        countGradedTasks.text = "total: \(state.countGradedTasks)"
     }
     
     /// rerun get requests
@@ -142,24 +137,7 @@ class LandingVC: UIViewController, StoreSubscriber, FetchDelegate, UITableViewDa
         Fetch.refreshData(refreshControl: refreshControl)
     }
 
-    
-    // USER INTERACTIVITY
-    
-    @IBAction func triggerCreateTeam(_ sender: Any) {
-        Alerts.createTeam(self)
-    }
-    
-    
-    @IBAction func triggerInfo(_ sender: Any) {
-        Alerts.info(self, title: "Calculations explained", message: "A task is only counted if you grade it.\n\ntasks/day : all tasks divided by number of days you've used the app.\n\nrank : tasks/day compared to all other users.\n\ntasks : total number of tasks")
-    }
-    
-    @IBAction func triggerGiveFeedbackAlert(_ sender: Any) {
-        Alerts.giveFeedback(self, message: "How can I improve this app?")
-    }
-    
-
-    func setTaskButtons(_ state: AppState) {
+    func setTaskButton(_ state: AppState) {
         taskButton.removeTarget(nil, action: nil, for: .allEvents)
         var taskChosen = false
         var taskGraded = false
@@ -173,7 +151,7 @@ class LandingVC: UIViewController, StoreSubscriber, FetchDelegate, UITableViewDa
             }
             if latestTask.dueDate > naiveDate() { todayTaskGraded = true }
         }
-        print("CONDITIONS: ", taskChosen, taskGraded, todayTaskGraded)
+
         switch (taskChosen, taskGraded, todayTaskGraded) {
         // no task
         case (false, _, _):
@@ -208,9 +186,6 @@ class LandingVC: UIViewController, StoreSubscriber, FetchDelegate, UITableViewDa
             taskButton.addTarget(self, action: #selector(_chooseTask), for: .touchUpInside)
             taskButtonLabel.text = "Change"
             taskButton.setImage(UIImage(named: "pencil-25"), for: .normal)
-            
-        default:
-            break
         }
     }
     
@@ -220,6 +195,21 @@ class LandingVC: UIViewController, StoreSubscriber, FetchDelegate, UITableViewDa
     
     @objc func _gradeTask(_ sender: UIButton) {
         Alerts.gradeTask(self)
+    }
+    
+    // USER INTERACTIVITY
+    
+    @IBAction func triggerCreateTeam(_ sender: Any) {
+        Alerts.createTeam(self)
+    }
+    
+    
+    @IBAction func triggerInfo(_ sender: Any) {
+        Alerts.info(self, title: "Calculations explained", message: "consistency : the percent of days you created and graded a task.\n\nrank : consistency compared to all other users.\n\ntotal : total number of graded tasks")
+    }
+    
+    @IBAction func triggerGiveFeedbackAlert(_ sender: Any) {
+        Alerts.giveFeedback(self, message: "How can I improve this app?")
     }
     
 }

@@ -43,7 +43,7 @@ struct SaveStats: Action {
     let streak: Int
     let rank: Int
     let totalUsers: Int
-    let consistency: Double
+    let consistency: Int
     let countGradedTasks: Int
 }
 
