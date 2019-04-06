@@ -14,7 +14,7 @@ struct AppState: StateType {
     
     var tasks: [Task] = [Task]()
     var teams: [Team] = [Team]()
-    var displayTask: Task?
+    var latestTask: Task? = nil
     var pointsTotal: Int = 0
     var weeklyGrades: [Int] = Array(repeating: 0, count: 7)
     var streak: Int = 0
@@ -25,5 +25,4 @@ struct AppState: StateType {
     
     var loggedIn: Bool = false
     var fetchingLogIn: Bool = false
-    var tomorrowTaskChosen: Bool = false
 }

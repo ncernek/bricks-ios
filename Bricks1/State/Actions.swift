@@ -47,8 +47,11 @@ struct SaveStats: Action {
     let countGradedTasks: Int
 }
 
-struct SaveDisplayTask: Action {
-    let task: Task
+struct SaveLatestTask: Action {
+    let task: Task?
+    init(task: Task? = nil) {
+        self.task = task
+    }
 }
 
 struct SaveTasks: Action {

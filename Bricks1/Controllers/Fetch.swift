@@ -145,14 +145,14 @@ class Fetch {
                 self.handleResponse(data: data!, response: response!) {data in
                     let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any?]
                     let task = Task.fromDict(json)
-                    store.dispatch(SaveDisplayTask(task: task))
+                    store.dispatch(SaveLatestTask(task: task))
                     return true
                 }
             }.get { didSucceed in
                 if didSucceed && task.grade == nil {
                     self.triggerConfirmation(title: "Success!", message: "I'll follow up with you tonight to check on your progress.")
                 } else if didSucceed {
-                    let points = store.state.displayTask!.pointsEarned!
+                    let points = store.state.latestTask!.pointsEarned!
                     self.triggerConfirmation(title: "+\(points) pts earned!", message: "Keep up the good work.")
                 }
         }
@@ -282,10 +282,13 @@ class Fetch {
                             tasks.append(task)
                         }
                         store.dispatch(SaveTasks(tasks: tasks))
-                        if tasks.count > 0 {
-                            if tasks[0].dueDate >= naiveDate(delta: 0) {
-                                store.dispatch(SaveDisplayTask(task: tasks[0]))
-                            }
+                        
+                        // manage display logic
+                        if tasks.count > 0, tasks[0].dueDate >= naiveDate(delta: -1) {
+                            store.dispatch(SaveLatestTask(task: tasks[0]))
+                        } else {
+                            // empty latest task
+                            store.dispatch(SaveLatestTask())
                         }
                     }
                     return true

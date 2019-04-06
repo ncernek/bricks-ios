@@ -65,7 +65,7 @@ struct Task {
     }
     
     static func updateTaskGrade(_ grade: Int) {
-        let task = store.state.displayTask!.update(grade: grade)
+        let task = store.state.latestTask!.update(grade: grade)
         Fetch.putTask(task)
     }
     

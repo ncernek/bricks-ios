@@ -21,7 +21,7 @@ class Alerts {
 
     class func gradeTask(_ vc: UIViewController) {
         let alertController = UIAlertController(title: "Grade your progress", message:
-            "On a scale of 0 to 5, how well did you do this: \(store.state.displayTask!.description)", preferredStyle: .alert)
+            "On a scale of 0 to 5, how well did you do this: \(store.state.latestTask!.description)", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
         for num in 0...5 {
             alertController.addAction(

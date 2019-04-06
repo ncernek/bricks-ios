@@ -48,7 +48,6 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         
         configureTableView()
         configureViews()
-        configureFirebase()
         
         // set up Firestore threads for each member on each team
         _ = Threads()
@@ -57,11 +56,13 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         updatePieChart(store.state.streak, pieChartView: pieChart)
     }
     
+    /// show navbar for other VCs
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    /// hide navbar for landing VC
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -74,10 +75,6 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         refreshControl.addTarget(self, action:  #selector(refreshData), for: UIControl.Event.valueChanged)
         tableView.refreshControl = refreshControl
         
-    }
-    
-    func configureFirebase() {
-//        Messaging.messaging().delegate = self
     }
     
     func configureViews() {
@@ -118,11 +115,11 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         
         // set which task is being looked at
         
-        yourTaskLabel.text = state.displayTask?.description ?? "What's your top task today?"
+        yourTaskLabel.text = state.latestTask?.description ?? "What's your top task today?"
         yourGrade.text = ""
         
         // TODO remove this
-        if let grade = state.displayTask?.grade {
+        if let grade = state.latestTask?.grade {
             yourGrade.text = String(grade)
         }
         
@@ -155,28 +152,6 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
     
     @IBAction func triggerInfo(_ sender: Any) {
         Alerts.info(self, title: "Calculations explained", message: "A task is only counted if you grade it.\n\ntasks/day : all tasks divided by number of days you've used the app.\n\nrank : tasks/day compared to all other users.\n\ntasks : total number of tasks")
-    }
-    
-    
-    @IBAction func triggerTaskAction(_ sender: Any) {
-        var taskChosen = false
-        var taskGraded = false
-        
-        if store.state.displayTask?.description != nil {taskChosen = true}
-        if store.state.displayTask?.grade != nil {taskGraded = true}
-        
-        switch (taskChosen, taskGraded, store.state.tomorrowTaskChosen) {
-        case (false, false, false):
-            Alerts.chooseTask(self, dueDelta: 0)
-        case (true, false, false):
-            Alerts.gradeTask(self)
-        case (true, true, false):
-            Alerts.chooseTask(self, dueDelta: 1)
-        case (true, false, true):
-            Alerts.chooseTask(self, dueDelta: 1)
-        default:
-            break
-        }
     }
     
     @IBAction func triggerGiveFeedbackAlert(_ sender: Any) {
@@ -253,33 +228,70 @@ class LandingVC: UIViewController, UITableViewDataSource, StoreSubscriber, UITab
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // UPDATE UI BASED ON STATE
+
     func setTaskButtons(_ state: AppState) {
+        taskButton.removeTarget(nil, action: nil, for: .allEvents)
         var taskChosen = false
         var taskGraded = false
+        var todayTaskGraded = false
         
-        if state.displayTask?.description != nil {taskChosen = true}
-        if state.displayTask?.grade != nil {taskGraded = true}
-        
-        switch (taskChosen, taskGraded, state.tomorrowTaskChosen) {
-        case (false, false, false):
+        if let latestTask = store.state.latestTask {
+            taskChosen = true
+            if latestTask.grade != nil {
+                taskGraded = true
+                if latestTask.dueDate >= naiveDate() { todayTaskGraded = true }
+            }
+            if latestTask.dueDate > naiveDate() { todayTaskGraded = true }
+        }
+        print("CONDITIONS: ", taskChosen, taskGraded, todayTaskGraded)
+        switch (taskChosen, taskGraded, todayTaskGraded) {
+        // no task
+        case (false, _, _):
+            taskButton.tag = 0
+            taskButton.addTarget(self, action: #selector(_chooseTask), for: .touchUpInside)
             taskButtonLabel.text = "Choose"
-            
             taskButton.setImage(UIImage(named: "plus-30"), for: .normal)
+            
+        // today or yester task but not graded
         case (true, false, false):
+            taskButton.addTarget(self, action: #selector(_gradeTask), for: .touchUpInside)
             taskButtonLabel.text = "Grade"
             taskButton.setImage(UIImage(named: "pass-fail-25"), for: .normal)
+            
+        // yester task graded
         case (true, true, false):
+            taskButton.tag = 0
+            taskButton.addTarget(self, action: #selector(_chooseTask), for: .touchUpInside)
+            taskButtonLabel.text = "Choose"
+            taskButton.setImage(UIImage(named: "plus-30"), for: .normal)
+            
+        // today task graded
+        case (true, true, true):
+            taskButton.tag = 1
+            taskButton.addTarget(self, action: #selector(_chooseTask), for: .touchUpInside)
             taskButtonLabel.text = "Tomorrow"
             taskButton.setImage(UIImage(named: "plus-30"), for: .normal)
+            
+        // tomorrow task
         case (true, false, true):
+            taskButton.tag = 1
+            taskButton.addTarget(self, action: #selector(_chooseTask), for: .touchUpInside)
             taskButtonLabel.text = "Change"
             taskButton.setImage(UIImage(named: "pencil-25"), for: .normal)
-            tomorrowLabel.isHidden = false
+            
         default:
             break
         }
     }
+    
+    @objc func _chooseTask(_ sender: UIButton) {
+        Alerts.chooseTask(self, dueDelta: sender.tag)
+    }
+    
+    @objc func _gradeTask(_ sender: UIButton) {
+        Alerts.gradeTask(self)
+    }
+    
 }
 
 

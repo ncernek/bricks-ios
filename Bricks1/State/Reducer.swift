@@ -48,10 +48,9 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.consistency = action.consistency
         state.countGradedTasks = action.countGradedTasks
     
-    case let action as SaveDisplayTask:
-        state.displayTask = action.task
-        if action.task.dueDate > naiveDate() { state.tomorrowTaskChosen = true }
-    
+    case let action as SaveLatestTask:
+        state.latestTask = action.task
+
     case let action as SaveTasks:
         state.tasks = action.tasks
         
