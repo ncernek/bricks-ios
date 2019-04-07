@@ -125,6 +125,10 @@ class Fetch {
     class func getImage(_ url: URL) {
         self.promiseGetPhoto(url)
     }
+    
+    class func nudge(_ nudgee: Int) {
+        self.promiseNudge(nudgee)
+    }
 
     
     // PROMISES
@@ -320,6 +324,19 @@ class Fetch {
                         countGradedTasks: countGradedTasks))
                     return true
                 }
+        }
+    }
+    
+    class func promiseNudge(_ nudgee: Int) -> Promise<Bool> {
+        let authToken = store.state.authToken!
+        let params = [
+            "nudgee": nudgee
+        ]
+        return firstly {
+            self.request(authToken, method: "POST", params: params, url: config.URL_NUDGE)
+            }.map {(data: Data?, response: URLResponse?) in
+                self.triggerConfirmation(title: "Success!", message: "Your friend was nudged to choose a task.")
+                return true
         }
     }
         

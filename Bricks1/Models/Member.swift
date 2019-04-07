@@ -7,9 +7,9 @@ struct Member {
     var displayTask: Task? = nil
     var tasks: [Task]
     var unreadMessageCount: Int = 0
-    var consistency: Double
+    var consistency: Int = 0
     
-    init(username: String, userId: Int, memberId: Int, pointsTotal: Int, displayTask: Task? = nil, tasks: [Task] = [Task](), consistency: Double) {
+    init(username: String, userId: Int, memberId: Int, pointsTotal: Int, displayTask: Task? = nil, tasks: [Task] = [Task](), consistency: Int) {
         self.username = username
         self.userId = userId
         self.memberId = memberId
@@ -69,7 +69,7 @@ struct Member {
             pointsTotal: member["points_total"] as! Int,
             displayTask: displayTask,
             tasks: tasks,
-            consistency: member["consistency"] as! Double
+            consistency: member["consistency"] as! Int
         )
     }
 }

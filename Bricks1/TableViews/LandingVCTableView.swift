@@ -44,12 +44,27 @@ extension LandingVC: UITableViewDelegate {
         let team = store.state.teams[indexPath.section]
         let member = team.members[indexPath.row]
         
+        cell.member = member
         cell.username.text = member.username
         cell.consistency.text = String(member.consistency)
-        cell.taskDescription.text = member.displayTask?.description ?? ""
         
-        cell.tomorrowLabel.isHidden = true
-        if member.displayTask?.dueDate == naiveDate(delta: 1) { cell.tomorrowLabel.isHidden = false }
+        // if no task, show a NUDGE button instead
+        if let displayTask = member.displayTask {
+            cell.taskDescription.text = displayTask.description
+            cell.taskDescription.isHidden = false
+            cell.nudgeButton.isHidden = true
+            cell.nudgeButton.isEnabled = false
+        } else {
+            cell.taskDescription.isHidden = true
+            cell.nudgeButton.isHidden = false
+            cell.nudgeButton.isEnabled = true
+        }
+        
+        // check if task is for tomorrow
+        if member.displayTask?.dueDate == naiveDate(delta: 1) { cell.tomorrowLabel.isHidden = false
+        } else {
+            cell.tomorrowLabel.isHidden = true
+        }
         
         // count unread messages
         cell.grade.text = ""
@@ -66,8 +81,17 @@ extension LandingVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let team = store.state.teams[indexPath.section]
+//        let member = team.members[indexPath.row]
+        
         let vc = ChatVC(currentUser: team.currentUser, threadOwner: team.members[indexPath.row], team: team)
         navigationController?.pushViewController(vc, animated: true)
+        
+//        if member.displayTask != nil {
+//            let vc = ChatVC(currentUser: team.currentUser, threadOwner: team.members[indexPath.row], team: team)
+//            navigationController?.pushViewController(vc, animated: true)
+//        } else {
+//            Fetch.nudge(member.memberId)
+//        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -98,17 +122,29 @@ class TaskCell: UITableViewCell {
     @IBOutlet var grade: UILabel!
     @IBOutlet var tomorrowLabel: UILabel!
     @IBOutlet var consistency: UILabel!
+    @IBOutlet var nudgeButton: UIButton!
+    
+    var member: Member!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
+        // configure nudge button
+        nudgeButton.layer.cornerRadius = nudgeButton.frame.height / 2
+        nudgeButton.layer.masksToBounds = false
+        nudgeButton.clipsToBounds = true
+        
         // configure unread messages label
         grade.layer.cornerRadius = grade.frame.height / 2
         grade.layer.masksToBounds = false
         grade.clipsToBounds = true
-        
     }
+    
+    @IBAction func triggerNudge(_ sender: Any) {
+        Fetch.nudge(member.memberId)
+    }
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

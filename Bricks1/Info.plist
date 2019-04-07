@@ -74,6 +74,8 @@
 	<string>$(PATH_TASK)</string>
 	<key>PATH_TEAM</key>
 	<string>$(PATH_TEAM)</string>
+	<key>PATH_NUDGE</key>
+	<string>$(PATH_NUDGE)</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>$(REVERSED_CLIENT_ID)</string>
 	<key>UIBackgroundModes</key>
