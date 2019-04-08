@@ -9,6 +9,7 @@ class Alerts {
             "What's your top task?", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "stack a brick"
+            textField.autocapitalizationType = .sentences
         }
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
         alertController.addAction(
@@ -35,7 +36,9 @@ class Alerts {
     class func giveFeedback(_ vc: UIViewController, message: String) {
         let alertController = UIAlertController(title: "Feedback", message:
             message , preferredStyle: .alert)
-        alertController.addTextField()
+        alertController.addTextField() { textField in
+            textField.autocapitalizationType = .sentences
+        }
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
         alertController.addAction(
             UIAlertAction(title: "Send", style: .default, handler: { action in

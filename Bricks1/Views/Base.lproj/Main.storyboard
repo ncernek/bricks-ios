@@ -97,13 +97,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tomorrow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzv-8Y-WBn">
-                                                    <rect key="frame" x="180.5" y="11" width="59" height="14.5"/>
-                                                    <color key="backgroundColor" red="0.123228804" green="0.68958201139999997" blue="0.04036708873" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="consistency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmh-rV-Ehv">
                                                     <rect key="frame" x="204" y="11" width="71" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -127,7 +120,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="tmh-rV-Ehv" firstAttribute="centerY" secondItem="dv4-Um-p0Z" secondAttribute="centerY" id="2mT-Ix-KFg"/>
-                                                <constraint firstItem="Qzv-8Y-WBn" firstAttribute="leading" secondItem="tmh-rV-Ehv" secondAttribute="trailing" constant="1" id="4jh-fo-Hei"/>
                                                 <constraint firstItem="tmh-rV-Ehv" firstAttribute="leading" secondItem="dv4-Um-p0Z" secondAttribute="trailing" constant="5" id="5Rr-zq-j9o"/>
                                                 <constraint firstItem="Ncm-Rk-DYm" firstAttribute="bottom" secondItem="eJ5-Kz-FnX" secondAttribute="bottomMargin" id="NWT-t3-haI"/>
                                                 <constraint firstItem="mhX-BX-nds" firstAttribute="leading" secondItem="Ncm-Rk-DYm" secondAttribute="trailing" id="TgR-xm-PvC"/>
@@ -137,7 +129,6 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="mhX-BX-nds" secondAttribute="trailing" id="cNz-cV-hOk"/>
                                                 <constraint firstItem="70B-Sm-9kW" firstAttribute="centerY" secondItem="eJ5-Kz-FnX" secondAttribute="centerY" id="e7v-Pa-sgg"/>
                                                 <constraint firstItem="Ncm-Rk-DYm" firstAttribute="leading" secondItem="eJ5-Kz-FnX" secondAttribute="leadingMargin" id="fcG-MX-TMp"/>
-                                                <constraint firstItem="Qzv-8Y-WBn" firstAttribute="top" secondItem="eJ5-Kz-FnX" secondAttribute="topMargin" id="kGw-EK-Itr"/>
                                                 <constraint firstItem="dv4-Um-p0Z" firstAttribute="leading" secondItem="Ncm-Rk-DYm" secondAttribute="leading" id="zP3-uP-nQ8"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -146,7 +137,6 @@
                                             <outlet property="grade" destination="mhX-BX-nds" id="b7g-uj-hkl"/>
                                             <outlet property="nudgeButton" destination="70B-Sm-9kW" id="J2a-qX-Kk0"/>
                                             <outlet property="taskDescription" destination="Ncm-Rk-DYm" id="Qsf-LL-KXP"/>
-                                            <outlet property="tomorrowLabel" destination="Qzv-8Y-WBn" id="aj2-Gb-cqy"/>
                                             <outlet property="username" destination="dv4-Um-p0Z" id="0pz-Oj-rZT"/>
                                         </connections>
                                     </tableViewCell>
@@ -217,12 +207,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" red="0.123228804" green="0.68958201139999997" blue="0.04036708873" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tomorrow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1O-eU-GcV">
-                                <rect key="frame" x="335" y="228.5" width="59" height="14.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58A-95-pT6" customClass="BarChartView" customModule="Charts">
@@ -326,7 +310,6 @@
                             <constraint firstItem="CWM-q6-Tga" firstAttribute="leading" secondItem="eI2-UR-Esa" secondAttribute="trailing" id="7HW-ts-JX0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vlw-mj-Jyx" secondAttribute="trailing" constant="20" id="9wd-gN-Zdp"/>
                             <constraint firstItem="vlw-mj-Jyx" firstAttribute="centerY" secondItem="Gxp-0T-6Rt" secondAttribute="centerY" id="BFQ-aE-bwT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P1O-eU-GcV" secondAttribute="trailing" constant="20" id="CKE-1w-F4S"/>
                             <constraint firstItem="WMd-nY-7fk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="EOi-PI-mlC"/>
                             <constraint firstItem="KIW-o9-78j" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="Ie5-eb-o3s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="58A-95-pT6" secondAttribute="trailing" constant="20" id="Mhm-cv-57b"/>
@@ -355,7 +338,6 @@
                             <constraint firstItem="WjR-i1-Wpv" firstAttribute="top" secondItem="sch-9N-bMR" secondAttribute="bottom" constant="5" id="tgH-zZ-ER6"/>
                             <constraint firstItem="sAY-vV-4IF" firstAttribute="centerX" secondItem="KIW-o9-78j" secondAttribute="centerX" id="ube-5H-yum"/>
                             <constraint firstItem="HYk-Nz-0uR" firstAttribute="centerX" secondItem="WMd-nY-7fk" secondAttribute="centerX" id="uo4-8M-rCk"/>
-                            <constraint firstItem="Gxp-0T-6Rt" firstAttribute="top" secondItem="P1O-eU-GcV" secondAttribute="bottom" constant="-5" id="v66-a7-fuh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qHF-pf-RxO" secondAttribute="trailing" constant="20" id="vcF-e6-Sny"/>
                             <constraint firstItem="sch-9N-bMR" firstAttribute="top" secondItem="Gxp-0T-6Rt" secondAttribute="bottom" constant="20" id="wMg-pT-ZuF"/>
                             <constraint firstItem="sch-9N-bMR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wN3-J0-575"/>
@@ -381,7 +363,6 @@
                         <outlet property="tableView" destination="sch-9N-bMR" id="FbN-O3-yrq"/>
                         <outlet property="taskButton" destination="WMd-nY-7fk" id="UDa-Zn-6R6"/>
                         <outlet property="taskButtonLabel" destination="HYk-Nz-0uR" id="2C0-LQ-IxJ"/>
-                        <outlet property="tomorrowLabel" destination="P1O-eU-GcV" id="ro8-m0-FeC"/>
                         <outlet property="yourGrade" destination="vlw-mj-Jyx" id="b6W-b7-4pz"/>
                         <outlet property="yourTaskLabel" destination="Gxp-0T-6Rt" id="iwA-wP-7q6"/>
                     </connections>

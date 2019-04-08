@@ -25,7 +25,6 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
     @IBOutlet var taskButton: UIButton!
     @IBOutlet var taskButtonLabel: UILabel!
     @IBOutlet var yourTaskLabel: UILabel!
-    @IBOutlet var tomorrowLabel: UILabel!
     @IBOutlet var yourGrade: UILabel!
     
     @IBOutlet var tableView: UITableView!
@@ -93,7 +92,6 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
         
         // config yourTask labels
         yourGrade.text = ""
-        tomorrowLabel.isHidden = true
     }
     
     func trackLogins() {

@@ -38,7 +38,7 @@ func updateBarChart(_ weeklyGrades: [Int], barChartView: BarChartView) {
     barChartView.leftAxis.axisMaximum = 5
     
     barChartView.minOffset = 0
-    
+    barChartView.isHidden = true
 }
 
 func updatePieChart(_ streak: Int = 20, goal: Int = 30, pieChartView: PieChartView) {
@@ -66,5 +66,6 @@ func updatePieChart(_ streak: Int = 20, goal: Int = 30, pieChartView: PieChartVi
     
     // add labels
     pieChartView.centerText = String(streak)
+    pieChartView.isHidden = true
     
 }

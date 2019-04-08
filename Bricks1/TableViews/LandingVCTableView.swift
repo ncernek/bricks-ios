@@ -60,12 +60,6 @@ extension LandingVC: UITableViewDelegate {
             cell.nudgeButton.isEnabled = true
         }
         
-        // check if task is for tomorrow
-        if member.displayTask?.dueDate == naiveDate(delta: 1) { cell.tomorrowLabel.isHidden = false
-        } else {
-            cell.tomorrowLabel.isHidden = true
-        }
-        
         // count unread messages
         cell.grade.text = ""
         cell.grade.isHidden = true
@@ -112,7 +106,6 @@ class TaskCell: UITableViewCell {
     @IBOutlet var username: UILabel!
     @IBOutlet var taskDescription: UILabel!
     @IBOutlet var grade: UILabel!
-    @IBOutlet var tomorrowLabel: UILabel!
     @IBOutlet var consistency: UILabel!
     @IBOutlet var nudgeButton: UIButton!
     
