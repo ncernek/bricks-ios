@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sch-9N-bMR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sch-9N-bMR">
                                 <rect key="frame" x="0.0" y="338" width="414" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -67,21 +67,24 @@
                                             <outlet property="teamName" destination="rlN-eS-NZ7" id="tfv-au-dXd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="65" id="cIC-Pz-gsp" customClass="TaskCell" customModule="Bricks1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68" width="414" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="80" id="cIC-Pz-gsp" customClass="TaskCell" customModule="Bricks1" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="68" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cIC-Pz-gsp" id="eJ5-Kz-FnX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="taskDescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncm-Rk-DYm">
-                                                    <rect key="frame" x="20" y="33" width="359" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today I am going to conquer the world by coding and fighting off the evil forces" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncm-Rk-DYm">
+                                                    <rect key="frame" x="20" y="29" width="359" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="hSH-hd-rDw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhX-BX-nds">
-                                                    <rect key="frame" x="379" y="25" width="15" height="15"/>
+                                                    <rect key="frame" x="379" y="32.5" width="15" height="15"/>
                                                     <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="15" id="AuG-Jd-nU2"/>
@@ -91,8 +94,8 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv4-Um-p0Z">
-                                                    <rect key="frame" x="20" y="11" width="186" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv4-Um-p0Z">
+                                                    <rect key="frame" x="20" y="11" width="68" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -104,7 +107,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70B-Sm-9kW">
-                                                    <rect key="frame" x="324" y="7.5" width="50" height="50"/>
+                                                    <rect key="frame" x="324" y="15" width="50" height="50"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="lHw-jG-g7a"/>
@@ -121,6 +124,7 @@
                                             <constraints>
                                                 <constraint firstItem="tmh-rV-Ehv" firstAttribute="centerY" secondItem="dv4-Um-p0Z" secondAttribute="centerY" id="2mT-Ix-KFg"/>
                                                 <constraint firstItem="tmh-rV-Ehv" firstAttribute="leading" secondItem="dv4-Um-p0Z" secondAttribute="trailing" constant="5" id="5Rr-zq-j9o"/>
+                                                <constraint firstItem="dv4-Um-p0Z" firstAttribute="leading" secondItem="eJ5-Kz-FnX" secondAttribute="leadingMargin" id="MOP-Yo-NZj"/>
                                                 <constraint firstItem="Ncm-Rk-DYm" firstAttribute="bottom" secondItem="eJ5-Kz-FnX" secondAttribute="bottomMargin" id="NWT-t3-haI"/>
                                                 <constraint firstItem="mhX-BX-nds" firstAttribute="leading" secondItem="Ncm-Rk-DYm" secondAttribute="trailing" id="TgR-xm-PvC"/>
                                                 <constraint firstItem="dv4-Um-p0Z" firstAttribute="top" secondItem="eJ5-Kz-FnX" secondAttribute="topMargin" id="Yhn-eC-pyR"/>
@@ -129,7 +133,6 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="mhX-BX-nds" secondAttribute="trailing" id="cNz-cV-hOk"/>
                                                 <constraint firstItem="70B-Sm-9kW" firstAttribute="centerY" secondItem="eJ5-Kz-FnX" secondAttribute="centerY" id="e7v-Pa-sgg"/>
                                                 <constraint firstItem="Ncm-Rk-DYm" firstAttribute="leading" secondItem="eJ5-Kz-FnX" secondAttribute="leadingMargin" id="fcG-MX-TMp"/>
-                                                <constraint firstItem="dv4-Um-p0Z" firstAttribute="leading" secondItem="Ncm-Rk-DYm" secondAttribute="leading" id="zP3-uP-nQ8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
