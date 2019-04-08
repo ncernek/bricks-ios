@@ -156,8 +156,10 @@ class Fetch {
                 if didSucceed && task.grade == nil {
                     self.triggerConfirmation(title: "Success!", message: "I'll follow up with you tonight to check on your progress.")
                 } else if didSucceed {
-                    let points = store.state.latestTask!.pointsEarned!
-                    self.triggerConfirmation(title: "+\(points) pts earned!", message: "Keep up the good work.")
+                    // TODO get rid of points as a concept
+//                    let points = store.state.latestTask!.pointsEarned!
+//                    self.triggerConfirmation(title: "+\(points) pts earned!", message: "Keep up the good work.")
+                    self.triggerConfirmation(title: "Good job!", message: "Stay consistent and you can achieve your goals.")
                 }
         }
     }
@@ -335,7 +337,7 @@ class Fetch {
         return firstly {
             self.request(authToken, method: "POST", params: params, url: config.URL_NUDGE)
             }.map {(data: Data?, response: URLResponse?) in
-                self.triggerConfirmation(title: "Success!", message: "Your friend was nudged to choose a task.")
+                self.triggerConfirmation(title: "Nudge sent!", message: "You nudged your friend to choose a task.")
                 return true
         }
     }

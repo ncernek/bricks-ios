@@ -15,6 +15,7 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
     @IBOutlet var countGradedTasks: UILabel!
     @IBOutlet var rank: UILabel!
     @IBOutlet var consistency: UILabel!
+    @IBOutlet var arrow: UIImageView!
     
     @IBOutlet var barChart: BarChartView!
     @IBOutlet var pieChart: PieChartView!
@@ -130,6 +131,15 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
         consistency.text = "consistency: \(state.consistency)%"
         rank.text = "rank: \(state.rank) / \(state.totalUsers)"
         countGradedTasks.text = "total: \(state.countGradedTasks)"
+        
+        if state.streak > 0 {
+            arrow.image = UIImage(named: "up-arrow-24")
+        } else {
+            arrow.image = UIImage(named: "down-arrow-24")
+        }
+        
+
+        
     }
     
     /// rerun get requests

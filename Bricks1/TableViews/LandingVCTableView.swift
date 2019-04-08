@@ -46,7 +46,7 @@ extension LandingVC: UITableViewDelegate {
         
         cell.member = member
         cell.username.text = member.username
-        cell.consistency.text = String(member.consistency)
+        cell.consistency.text = "\(member.consistency)%"
         
         // if no task, show a NUDGE button instead
         if let displayTask = member.displayTask {
@@ -81,21 +81,13 @@ extension LandingVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let team = store.state.teams[indexPath.section]
-//        let member = team.members[indexPath.row]
-        
         let vc = ChatVC(currentUser: team.currentUser, threadOwner: team.members[indexPath.row], team: team)
         navigationController?.pushViewController(vc, animated: true)
-        
-//        if member.displayTask != nil {
-//            let vc = ChatVC(currentUser: team.currentUser, threadOwner: team.members[indexPath.row], team: team)
-//            navigationController?.pushViewController(vc, animated: true)
-//        } else {
-//            Fetch.nudge(member.memberId)
-//        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
+
 
 /// cell that contains team name
 class HeaderCell: UITableViewCell {
