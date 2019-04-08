@@ -44,6 +44,9 @@ class AppConfig {
     var URL_NUDGE : URL {
         return URL(string: config["DOMAIN_BRICKS_SERVER"]  as! String + (config["PATH_NUDGE"] as! String))!
     }
+    var URL_ASSIST : URL {
+        return URL(string: config["DOMAIN_BRICKS_SERVER"]  as! String + (config["PATH_ASSIST"] as! String))!
+    }
     
     // GOOGLE SIGN IN
     var REVERSED_CLIENT_ID : String {

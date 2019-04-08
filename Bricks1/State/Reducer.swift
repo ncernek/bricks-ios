@@ -47,6 +47,8 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.totalUsers = action.totalUsers
         state.consistency = action.consistency
         state.countGradedTasks = action.countGradedTasks
+        state.assistance = action.assistance
+        state.todayAssist = action.todayAssist
     
     case let action as SaveLatestTask:
         state.latestTask = action.task
@@ -56,6 +58,9 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         
     case let action as SaveUnreadMessageCount:
         state.teams[action.teamIndex].members[action.memberIndex].unreadMessageCount = action.unreadMessageCount
+    
+    case _ as FlipAssistArrow:
+        state.todayAssist = true
     
     default:
         break

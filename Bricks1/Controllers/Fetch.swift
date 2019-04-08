@@ -126,8 +126,17 @@ class Fetch {
         self.promiseGetPhoto(url)
     }
     
-    class func nudge(_ nudgee: Int) {
-        self.promiseNudge(nudgee)
+    class func nudge(_ nudgeeMemberId: Int) {
+        self.promiseNudge(nudgeeMemberId)
+        Fetch.postAssist("NUDGE", assisteeMemberId: nudgeeMemberId)
+    }
+    
+    class func postAssist(_ action: String, assisteeMemberId: Int) {
+        let params: [String: Any] = [
+            "action": action,
+            "assistee_member_id": assisteeMemberId
+        ]
+        self.request(store.state.authToken!, method: "POST", params: params, url: config.URL_ASSIST)
     }
 
     
@@ -316,6 +325,8 @@ class Fetch {
                     let totalUsers = json["total_users"] as! Int
                     let consistency = json["consistency"] as! Int
                     let countGradedTasks = json["count_graded_tasks"] as! Int
+                    let assistance = json["assistance"] as! Int
+                    let todayAssist = json["today_assist"] as! Bool
                     store.dispatch(SaveStats(
                         pointsTotal: pointsTotal,
                         weeklyGrades: weeklyGrades,
@@ -323,16 +334,18 @@ class Fetch {
                         rank: rank,
                         totalUsers: totalUsers,
                         consistency: consistency,
-                        countGradedTasks: countGradedTasks))
+                        countGradedTasks: countGradedTasks,
+                        assistance: assistance,
+                        todayAssist: todayAssist))
                     return true
                 }
         }
     }
     
-    class func promiseNudge(_ nudgee: Int) -> Promise<Bool> {
+    class func promiseNudge(_ nudgeeMemberId: Int) -> Promise<Bool> {
         let authToken = store.state.authToken!
         let params = [
-            "nudgee": nudgee
+            "nudgee": nudgeeMemberId
         ]
         return firstly {
             self.request(authToken, method: "POST", params: params, url: config.URL_NUDGE)

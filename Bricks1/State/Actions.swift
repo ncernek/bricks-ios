@@ -45,6 +45,8 @@ struct SaveStats: Action {
     let totalUsers: Int
     let consistency: Int
     let countGradedTasks: Int
+    let assistance: Int
+    let todayAssist: Bool
 }
 
 struct SaveLatestTask: Action {
@@ -69,3 +71,5 @@ struct SaveUserDetails: Action {
 }
 
 struct LoginCompleted: Action {}
+
+struct FlipAssistArrow: Action {}

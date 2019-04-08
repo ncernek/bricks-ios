@@ -15,7 +15,9 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
     @IBOutlet var countGradedTasks: UILabel!
     @IBOutlet var rank: UILabel!
     @IBOutlet var consistency: UILabel!
-    @IBOutlet var arrow: UIImageView!
+    @IBOutlet var completionArrow: UIImageView!
+    @IBOutlet var assistance: UILabel!
+    @IBOutlet var assistArrow: UIImageView!
     
     @IBOutlet var barChart: BarChartView!
     @IBOutlet var pieChart: PieChartView!
@@ -128,15 +130,24 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
         updatePieChart(state.streak, pieChartView: pieChart)
         
         // stats
-        consistency.text = "consistency: \(state.consistency)%"
-        rank.text = "rank: \(state.rank) / \(state.totalUsers)"
+        consistency.text = "completion: \(state.consistency)%"
+        assistance.text = "assistance: \(state.assistance)%"
+//        rank.text = "rank: \(state.rank) / \(state.totalUsers)"
+        rank.isHidden = true
         countGradedTasks.text = "total: \(state.countGradedTasks)"
         
         if state.streak > 0 {
-            arrow.image = UIImage(named: "up-arrow-24")
+            completionArrow.image = UIImage(named: "up-arrow-24")
         } else {
-            arrow.image = UIImage(named: "down-arrow-24")
+            completionArrow.image = UIImage(named: "down-arrow-24")
         }
+        if state.todayAssist {
+            assistArrow.image = UIImage(named: "up-arrow-24")
+        } else {
+            assistArrow.image = UIImage(named: "down-arrow-24")
+        }
+        
+        
         
 
         
@@ -215,7 +226,7 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
     
     
     @IBAction func triggerInfo(_ sender: Any) {
-        Alerts.info(self, title: "Calculations explained", message: "consistency : the percent of days you created and graded a task.\n\nrank : consistency compared to all other users.\n\ntotal : total number of graded tasks")
+        Alerts.info(self, title: "Calculations explained", message: "completion : the percent of days you created and graded a task.\n\nassistance: the percent of days you nudged or commented on a team mate's task.\n\nrank : consistency compared to all other users.\n\ntotal : total number of graded tasks")
     }
     
     @IBAction func triggerGiveFeedbackAlert(_ sender: Any) {

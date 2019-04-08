@@ -155,6 +155,8 @@ extension ChatVC: MessagesDataSource {
 extension ChatVC: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let message = Message(member: currentUser, content: text)
+        
+        Fetch.postAssist("MESSAGE", assisteeMemberId: threadOwner.memberId)
 
         addToDB(message)
         inputBar.inputTextView.text = ""

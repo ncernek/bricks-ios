@@ -34,7 +34,7 @@ struct Team {
         }
         // sort members by consistency
         members.sort() { a, b in
-            if a.consistency > b.consistency { return true }
+            if a.consistency < b.consistency { return true }
             else { return false }
         }
         

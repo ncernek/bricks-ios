@@ -135,6 +135,7 @@ class TaskCell: UITableViewCell {
     
     @IBAction func triggerNudge(_ sender: Any) {
         Fetch.nudge(member.memberId)
+        store.dispatch(FlipAssistArrow())
     }
     
     
