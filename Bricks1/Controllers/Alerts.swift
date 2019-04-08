@@ -6,17 +6,32 @@ class Alerts {
         var dayString = "Today"
         if dueDelta > 0 { dayString = "Tomorrow" }
         let alertController = UIAlertController(title: dayString, message:
-            "What's your top task?", preferredStyle: .alert)
+            "What's your top task, and how long will it take?", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "stack a brick"
             textField.autocapitalizationType = .sentences
+            textField.font = UIFont.systemFont(ofSize: 18.0)
+        }
+
+        let durations = [
+            "15 min",
+            "30 min",
+            "1 hr",
+            "2 hr",
+            "4 hr",
+            "8 hr"
+        ]
+        for duration in durations {
+            alertController.addAction(
+                UIAlertAction(title: duration, style: .default) { action in
+                    let textField = alertController.textFields![0]
+                    let text = "\(textField.text!) (\(duration))"
+                    Task.createNewTask(text, dueDelta: dueDelta)
+                }
+            )
         }
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
-        alertController.addAction(
-            UIAlertAction(title: "Submit", style: .default, handler: { action in
-                let textField = alertController.textFields![0]
-                Task.createNewTask(textField.text!, dueDelta: dueDelta)
-            }))
+
         vc.present(alertController, animated: true, completion: nil)
     }
 
