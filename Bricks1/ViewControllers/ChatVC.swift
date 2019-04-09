@@ -157,6 +157,7 @@ extension ChatVC: MessageInputBarDelegate {
         let message = Message(member: currentUser, content: text)
         
         Fetch.postAssist("MESSAGE", assisteeMemberId: threadOwner.memberId)
+        store.dispatch(FlipAssistArrow())
 
         addToDB(message)
         inputBar.inputTextView.text = ""

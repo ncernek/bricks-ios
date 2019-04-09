@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3.1</string>
+	<string>0.4.1</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>10</string>
 	<key>CLIENT_ID</key>
 	<string>$(CLIENT_ID)</string>
 	<key>CONFIG_NAME</key>
@@ -60,6 +60,8 @@
 	</dict>
 	<key>PATH_APP_USER</key>
 	<string>$(PATH_APP_USER)</string>
+	<key>PATH_ASSIST</key>
+	<string>$(PATH_ASSIST)</string>
 	<key>PATH_AUTH_TOKEN</key>
 	<string>$(PATH_AUTH_TOKEN)</string>
 	<key>PATH_FEEDBACK</key>
@@ -68,16 +70,14 @@
 	<string>$(PATH_INVITE)</string>
 	<key>PATH_JOIN</key>
 	<string>$(PATH_JOIN)</string>
+	<key>PATH_NUDGE</key>
+	<string>$(PATH_NUDGE)</string>
 	<key>PATH_STATS</key>
 	<string>$(PATH_STATS)</string>
 	<key>PATH_TASK</key>
 	<string>$(PATH_TASK)</string>
 	<key>PATH_TEAM</key>
 	<string>$(PATH_TEAM)</string>
-	<key>PATH_NUDGE</key>
-	<string>$(PATH_NUDGE)</string>
-	<key>PATH_ASSIST</key>
-	<string>$(PATH_ASSIST)</string>
 	<key>REVERSED_CLIENT_ID</key>
 	<string>$(REVERSED_CLIENT_ID)</string>
 	<key>UIBackgroundModes</key>
