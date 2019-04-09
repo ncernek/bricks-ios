@@ -11,6 +11,7 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     case let action as SaveTeams:
         state.teams = action.teams
         Threads.makeThreads(action.teams)
+        state.totalUnreadMessageCount = 0
     
     case let action as SaveFIRPushNotifToken:
         state.firPushNotifToken = action.token
@@ -58,7 +59,13 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.tasks = action.tasks
         
     case let action as SaveUnreadMessageCount:
+        var previousCount = state.teams[action.teamIndex].members[action.memberIndex].unreadMessageCount
+        state.totalUnreadMessageCount = state.totalUnreadMessageCount + action.unreadMessageCount - previousCount
         state.teams[action.teamIndex].members[action.memberIndex].unreadMessageCount = action.unreadMessageCount
+        
+        // update the badge app icon
+        UIApplication.shared.applicationIconBadgeNumber = state.totalUnreadMessageCount
+
     
     case _ as FlipAssistArrow:
         state.todayAssist = true

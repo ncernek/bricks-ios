@@ -15,6 +15,8 @@ class Thread {
     private var messageListener: ListenerRegistration?
     private var memberData: [String: Any] = ["lastSeen": "placeholder"]
     private var memberListener: ListenerRegistration?
+    var memberListenerIsActive = false
+    
     
     private let currentUser: Member
     private let threadOwner: Member
@@ -44,7 +46,8 @@ class Thread {
             snapshot.documentChanges.forEach { change in
                 self.handleDocumentChange(change)
             }
-            self.countUnreadMessages()
+            // only count unreads if the member data has been checked
+            if self.memberListenerIsActive { self.countUnreadMessages() }
         }
         
         // listen to changes in MemberDocument
@@ -53,11 +56,10 @@ class Thread {
                 print("Error fetching document: \(error!)")
                 return
             }
-            guard let data = document.data() else {
-                return
-            }
-            self.memberData = data
+
+            if let data = document.data(), !data.isEmpty { self.memberData = data }
             self.countUnreadMessages()
+            self.memberListenerIsActive = true
         }
     }
 
@@ -85,7 +87,7 @@ class Thread {
     
     func countUnreadMessages() {
         var noMatch = true
-        // only update unreadMessageCount if there are messages
+        // only update unreadMessageCount if there are messages, and if lastSeen is not a placeholder
         if messages.count > 0 {
             for (index, message) in messages.enumerated() {
                 if message.messageId == memberData["lastSeen"] as! String {

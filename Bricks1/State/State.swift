@@ -29,4 +29,6 @@ struct AppState: StateType {
     
     var loggedIn: Bool = false
     var fetchingLogIn: Bool = false
+    
+    var totalUnreadMessageCount: Int = 0
 }
