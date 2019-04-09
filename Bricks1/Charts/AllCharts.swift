@@ -38,12 +38,12 @@ func updateBarChart(_ weeklyGrades: [Int], barChartView: BarChartView) {
     barChartView.leftAxis.axisMaximum = 5
     
     barChartView.minOffset = 0
-    barChartView.isHidden = true
+//    barChartView.isHidden = true
 }
 
-func updatePieChart(_ streak: Int = 20, goal: Int = 30, pieChartView: PieChartView) {
-    let streakEntry = PieChartDataEntry(value: Double(streak))
-    let goalEntry = PieChartDataEntry(value: Double(goal - streak))
+func updatePieChart(_ gradedTasks: Int, goal: Int, pieChartView: PieChartView) {
+    let streakEntry = PieChartDataEntry(value: Double(gradedTasks))
+    let goalEntry = PieChartDataEntry(value: Double(goal - gradedTasks))
     
     let dataSet = PieChartDataSet(values: [streakEntry, goalEntry], label: nil)
     dataSet.colors = [UIColor.defaultGreen, UIColor.customGrey]
@@ -65,7 +65,5 @@ func updatePieChart(_ streak: Int = 20, goal: Int = 30, pieChartView: PieChartVi
     
     
     // add labels
-    pieChartView.centerText = String(streak)
-    pieChartView.isHidden = true
-    
+    pieChartView.centerText = String(gradedTasks)
 }

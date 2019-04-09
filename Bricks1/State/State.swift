@@ -24,6 +24,8 @@ struct AppState: StateType {
     var countGradedTasks: Int = 0
     var assistance: Int = 0
     var todayAssist: Bool = false
+    var monthlyGradedTasks: Int = 0
+    var monthlyGoal: Int?
     
     var loggedIn: Bool = false
     var fetchingLogIn: Bool = false

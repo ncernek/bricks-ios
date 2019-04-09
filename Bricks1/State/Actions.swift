@@ -40,13 +40,14 @@ struct SaveTeams: Action {
 struct SaveStats: Action {
     let pointsTotal: Int
     let weeklyGrades: [Int]
-    let streak: Int
+    let streak: Int 
     let rank: Int
     let totalUsers: Int
     let consistency: Int
     let countGradedTasks: Int
     let assistance: Int
     let todayAssist: Bool
+    let monthlyGradedTasks: Int
 }
 
 struct SaveLatestTask: Action {
@@ -73,3 +74,7 @@ struct SaveUserDetails: Action {
 struct LoginCompleted: Action {}
 
 struct FlipAssistArrow: Action {}
+
+struct UpdateMonthlyGoal: Action {
+    let goal: Int
+}

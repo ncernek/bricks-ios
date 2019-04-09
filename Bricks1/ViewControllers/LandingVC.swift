@@ -49,8 +49,7 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
         // set up Firestore threads for each member on each team
         _ = Threads()
         
-        updateBarChart(store.state.weeklyGrades, barChartView: barChart)
-        updatePieChart(store.state.streak, pieChartView: pieChart)
+        FIRFetch.getGoal()
     }
     
     /// show navbar for other VCs
@@ -119,13 +118,24 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
             yourGrade.text = String(grade)
         }
         
-        
         if store.state.image != nil {
             profileImage.setBackgroundImage(store.state.image, for: .normal)
         }
         
         updateBarChart(state.weeklyGrades, barChartView: barChart)
-        updatePieChart(state.streak, pieChartView: pieChart)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(_chooseGoal))
+        if let monthlyGoal = state.monthlyGoal {
+            updatePieChart(state.monthlyGradedTasks, goal: monthlyGoal, pieChartView: pieChart)
+            pieChart.removeGestureRecognizer(tapGesture)
+        } else {
+            pieChart.data = nil
+            pieChart.noDataText = "set goal"
+            pieChart.noDataTextColor = UIColor.appleBlue
+            pieChart.noDataTextAlignment = NSTextAlignment.center
+            pieChart.noDataFont = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+            pieChart.addGestureRecognizer(tapGesture)
+        }
         
         // stats
         consistency.text = "completion: \(state.consistency)%"
@@ -144,11 +154,6 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
         } else {
             assistArrow.image = UIImage(named: "down-arrow-24")
         }
-        
-        
-        
-
-        
     }
     
     /// rerun get requests
@@ -216,6 +221,10 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
         Alerts.gradeTask(self)
     }
     
+    @objc func _chooseGoal(_ sender: UITapGestureRecognizer) {
+        Alerts.chooseGoal(self)
+    }
+    
     // USER INTERACTIVITY
     
     @IBAction func triggerCreateTeam(_ sender: Any) {
@@ -224,7 +233,7 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
     
     
     @IBAction func triggerInfo(_ sender: Any) {
-        Alerts.info(self, title: "Calculations explained", message: "completion : the percent of days you created and graded a task.\n\nassistance: the percent of days you nudged or commented on a team mate's task.\n\nrank : consistency compared to all other users.\n\ntotal : total number of graded tasks")
+        Alerts.info(self, title: "Calculations explained", message: "completion: the percent of days you created and graded a task.\n\nassistance: the percent of days you nudged or commented on a team mate's task.\n\ntotal: total number of graded tasks")
     }
     
     @IBAction func triggerGiveFeedbackAlert(_ sender: Any) {

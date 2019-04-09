@@ -2,7 +2,6 @@ import Foundation
 import PromiseKit
 import SwiftDate
 
-
 class Fetch {
     static let config = AppConfig()
     
@@ -327,6 +326,7 @@ class Fetch {
                     let countGradedTasks = json["count_graded_tasks"] as! Int
                     let assistance = json["assistance"] as! Int
                     let todayAssist = json["today_assist"] as! Bool
+                    let monthlyGradedTasks = json["monthly_graded_tasks"] as! Int
                     store.dispatch(SaveStats(
                         pointsTotal: pointsTotal,
                         weeklyGrades: weeklyGrades,
@@ -336,7 +336,9 @@ class Fetch {
                         consistency: consistency,
                         countGradedTasks: countGradedTasks,
                         assistance: assistance,
-                        todayAssist: todayAssist))
+                        todayAssist: todayAssist,
+                        monthlyGradedTasks: monthlyGradedTasks
+                    ))
                     return true
                 }
         }

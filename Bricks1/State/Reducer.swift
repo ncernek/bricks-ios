@@ -49,6 +49,7 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.countGradedTasks = action.countGradedTasks
         state.assistance = action.assistance
         state.todayAssist = action.todayAssist
+        state.monthlyGradedTasks = action.monthlyGradedTasks
     
     case let action as SaveLatestTask:
         state.latestTask = action.task
@@ -61,7 +62,10 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     
     case _ as FlipAssistArrow:
         state.todayAssist = true
-    
+
+    case let action as UpdateMonthlyGoal:
+        state.monthlyGoal = action.goal
+        
     default:
         break
     }

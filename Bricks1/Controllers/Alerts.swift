@@ -154,4 +154,20 @@ class Alerts {
             }))
         vc.present(alertController, animated: true, completion: nil)
     }
+    
+    class func chooseGoal(_ vc: UIViewController) {
+        let alertController = UIAlertController(title: "Set a Goal", message:
+            "How many tasks will you complete this month?", preferredStyle: .alert)
+    
+        let quantities = [ 10, 20, 30 ]
+        for num in quantities {
+            alertController.addAction(
+                UIAlertAction(title: String(num), style: .default, handler: {action in
+                    store.dispatch(UpdateMonthlyGoal(goal: num))
+                    FIRFetch.postGoal(num)
+                }))
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
+        vc.present(alertController, animated: true, completion: nil)
+    }
 }
