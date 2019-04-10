@@ -47,6 +47,9 @@ class AppConfig {
     var URL_ASSIST : URL {
         return URL(string: config["DOMAIN_BRICKS_SERVER"]  as! String + (config["PATH_ASSIST"] as! String))!
     }
+    var URL_CHAT : URL {
+        return URL(string: config["DOMAIN_BRICKS_SERVER"]  as! String + (config["PATH_CHAT"] as! String))!
+    }
     
     // GOOGLE SIGN IN
     var REVERSED_CLIENT_ID : String {

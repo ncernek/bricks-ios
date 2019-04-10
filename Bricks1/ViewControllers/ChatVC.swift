@@ -161,6 +161,7 @@ extension ChatVC: MessageInputBarDelegate {
         let message = Message(member: currentUser, content: text)
         
         Fetch.postAssist("MESSAGE", assisteeMemberId: threadOwner.memberId)
+        Fetch.postChat(team.teamId)
         store.dispatch(FlipAssistArrow())
 
         addToDB(message)

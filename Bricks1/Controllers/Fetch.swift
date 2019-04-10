@@ -137,6 +137,11 @@ class Fetch {
         ]
         self.request(store.state.authToken!, method: "POST", params: params, url: config.URL_ASSIST)
     }
+    
+    class func postChat(_ teamId: Int) {
+        let params = ["team_id": teamId]
+        self.request(store.state.authToken!, method: "POST", params:params, url: config.URL_CHAT)
+    }
 
     
     // PROMISES
