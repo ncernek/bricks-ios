@@ -50,7 +50,7 @@ struct Task {
         
         // move the latest task (in FS) to the tasks collection
         let db = Firestore.firestore()
-        let currentUserPath = ["users", String(store.state.currentUser!.uid)].joined(separator: "/")
+        let currentUserPath = ["users", String(store.state.firUser!.uid)].joined(separator: "/")
 
         self.archivePreviousTask(db, currentUserPath: currentUserPath)
             .ensure {

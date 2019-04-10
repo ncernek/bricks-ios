@@ -19,8 +19,11 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     case let action as SaveFIRToken:
         state.firToken = action.firToken
     
-    case let action as SaveUserDetails:
-        state.currentUser = action.currentUser
+    case let action as SaveFIRUser:
+        state.firUser = action.firUser
+    
+    case let action as SaveAppUser:
+        state.appUser = action.appUser
     
     case let action as ActionSaveImage:
         state.image = action.image

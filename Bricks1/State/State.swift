@@ -6,7 +6,8 @@ struct AppState: StateType {
     var firPushNotifToken : String?
     var firToken: String?
     var authToken: String?
-    var currentUser: User?
+    var firUser: User?
+    var appUser: AppUser?
     
     var userId: Int?
     var username: String?

@@ -30,7 +30,7 @@ func setVCforLogin(loggedIn: Bool = false) {
 
 
 func loginToBackend(_ currentUser: User) {
-    store.dispatch(SaveUserDetails(currentUser: currentUser))
+    store.dispatch(SaveFIRUser(firUser: currentUser))
     
     // retrieve a refreshed fir_auth_token and request all data
     currentUser.getIDToken() { firToken, error in

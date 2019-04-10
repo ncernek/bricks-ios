@@ -13,8 +13,8 @@ class Fetch {
         promiseAuthToken(firToken)
             .then { _ in
                 self.promisePutAppUser([
-                    "username": store.state.currentUser?.displayName,
-                    "email": store.state.currentUser?.email,
+                    "username": store.state.firUser?.displayName,
+                    "email": store.state.firUser?.email,
                     "fir_push_notif_token": store.state.firPushNotifToken
                     ])
             }.then { _ in
@@ -24,7 +24,7 @@ class Fetch {
             }.then { _ in
                 self.promiseGetStats()
             }.then {_ in
-                self.promiseGetPhoto(store.state.currentUser?.photoURL)
+                self.promiseGetPhoto(store.state.firUser?.photoURL)
             }.ensure {
                 store.dispatch(LoginCompleted())
             }.catch { error in
@@ -138,8 +138,11 @@ class Fetch {
         self.request(store.state.authToken!, method: "POST", params: params, url: config.URL_ASSIST)
     }
     
-    class func postChat(_ teamId: Int) {
-        let params = ["team_id": teamId]
+    class func postChat(_ content: String, teamId: Int) {
+        let params: [String: Any] = [
+            "team_id": teamId,
+            "content": content
+        ]
         self.request(store.state.authToken!, method: "POST", params:params, url: config.URL_CHAT)
     }
 
@@ -182,7 +185,9 @@ class Fetch {
         return firstly {
             self.request(authToken, method: "PUT", params: params, url: config.URL_APP_USER)
             }.map { (data: Data?, response: URLResponse?) in
-                self.handleResponse(data: data!, response: response!) {_ in
+                self.handleResponse(data: data!, response: response!) {data in
+                    let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+                    store.dispatch(SaveAppUser(appUser: AppUser.fromDict(json)))
                     return true
                 }
         }

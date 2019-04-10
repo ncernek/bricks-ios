@@ -5,6 +5,14 @@ import FirebaseUI
 
 class SettingsVC: UIViewController {
     
+    @IBOutlet var taskNotifSwitch: UISwitch!
+    @IBOutlet var messageNotifSwitch: UISwitch!
+    
+    override func viewDidLoad() {
+        taskNotifSwitch.isOn = store.state.appUser!.taskNotifs
+        messageNotifSwitch.isOn = store.state.appUser!.chatNotifs
+    }
+    
     @IBAction func triggerJoinTeam(_ sender: Any) {
         Alerts.joinTeam(self)
     }
@@ -20,6 +28,19 @@ class SettingsVC: UIViewController {
         setVCforLogin(loggedIn: false)
         store.dispatch(ActionLogOut())
     }
+    
+    @IBAction func toggleTaskNotif(_ sender: UISwitch) {
+        Fetch.putAppUser([
+            "task_notifs": sender.isOn
+        ])
+    }
+    
+    @IBAction func toggleMessageNotif(_ sender: UISwitch) {
+        Fetch.putAppUser([
+            "chat_notifs": sender.isOn
+            ])
+    }
+    
     
     
 }

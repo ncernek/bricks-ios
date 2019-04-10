@@ -67,8 +67,8 @@ struct SaveUnreadMessageCount: Action {
     let unreadMessageCount: Int
 }
 
-struct SaveUserDetails: Action {
-    let currentUser: User // FUI
+struct SaveFIRUser: Action {
+    let firUser: User // FUI
 }
 
 struct LoginCompleted: Action {}
@@ -77,4 +77,8 @@ struct FlipAssistArrow: Action {}
 
 struct UpdateMonthlyGoal: Action {
     let goal: Int
+}
+
+struct SaveAppUser: Action {
+    let appUser: AppUser
 }
