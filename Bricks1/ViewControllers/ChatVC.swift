@@ -50,6 +50,8 @@ final class ChatVC: MessagesViewController {
             if let lastMessage = self.messages.last {
                 self.memberDocument?.setData(["lastSeen": lastMessage.messageId], merge: true)
             }
+            
+            self.scrollToBottom()
         }
         
         messageInputBar.delegate = self
@@ -65,18 +67,20 @@ final class ChatVC: MessagesViewController {
         messageInputBar.inputTextView.layer.masksToBounds = true
         messageInputBar.sendButton.setTitleColor(UIColor.blue, for: .application)
         
-        
         if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
             layout.setMessageIncomingAvatarSize(.zero)
             layout.setMessageOutgoingAvatarSize(.zero)
         }
-    }
-    
-    override func viewWillLayoutSubviews() {
-        messageInputBar.inputTextView.becomeFirstResponder()
+        
     }
     
     // MARK: - Helpers
+    
+    func scrollToBottom() {
+        let lastSection = messages.count - 1
+        let indexPath = IndexPath(item: 0, section: lastSection)
+        messagesCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: false)
+    }
     
     private func handleDocumentChange(_ change: DocumentChange) {
         guard let message = Message(document: change.document) else {
@@ -113,8 +117,6 @@ final class ChatVC: MessagesViewController {
                 print("Error sending message: \(e.localizedDescription)")
                 return
             }
-            
-            self.messagesCollectionView.scrollToBottom()
         }
     }
     
@@ -147,6 +149,8 @@ extension ChatVC: MessagesDataSource {
         let name = message.sender.displayName
         return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
     }
+    
+
 }
 
 
@@ -183,9 +187,12 @@ extension ChatVC: MessagesDisplayDelegate {
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath,
                       in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+
+        
         let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
         return .bubbleTail(corner, .curved)
     }
+    
     
 }
 
