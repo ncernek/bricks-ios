@@ -6,7 +6,7 @@ class Alerts {
         var dayString = "Today"
         if dueDelta > 0 { dayString = "Tomorrow" }
         let alertController = UIAlertController(title: dayString, message:
-            "What's your top task, and how long will it take?", preferredStyle: .alert)
+            "What's your top task?", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "stack a brick"
             textField.autocapitalizationType = .sentences

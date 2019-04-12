@@ -34,5 +34,9 @@ target 'Bricks1' do
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Google'
   pod 'FirebaseUI/Email'
+  
+  # for crashlytics
+  pod 'Fabric', '~> 1.9.0'
+  pod 'Crashlytics', '~> 3.12.0'
 
 end

@@ -49,19 +49,22 @@ struct Task {
             pointsEarned: nil)
         
         // move the latest task (in FS) to the tasks collection
-        let db = Firestore.firestore()
-        let currentUserPath = ["users", String(store.state.firUser!.uid)].joined(separator: "/")
-
-        self.archivePreviousTask(db, currentUserPath: currentUserPath)
-            .ensure {
-                // save new task to latest task in Firestore
-                db.document(currentUserPath).setData(["latestTask": task.toDict()], merge: true)
-            }.catch { error in
-                print(error.localizedDescription)
-            }
+//        let db = Firestore.firestore()
+//        let currentUserPath = ["users", String(store.state.firUser!.uid)].joined(separator: "/")
+//
+//        self.archivePreviousTask(db, currentUserPath: currentUserPath)
+//            .ensure {
+//                // save new task to latest task in Firestore
+//                db.document(currentUserPath).setData(["latestTask": task.toDict()], merge: true)
+//            }.catch { error in
+//                print(error.localizedDescription)
+//            }
         
         // save task to Postgres
         Fetch.putTask(task)
+        
+        // create a reminder to grade task tonight
+        Notifications.createLocalNotification(Notifications.notifGradeTask)
     }
     
     static func updateTaskGrade(_ grade: Int) {

@@ -8,6 +8,9 @@ PODS:
   - Charts (3.2.2):
     - Charts/Core (= 3.2.2)
   - Charts/Core (3.2.2)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Fabric (1.9.0)
   - Firebase/Auth (5.17.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.3.1)
@@ -160,6 +163,8 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - Crashlytics (~> 3.12.0)
+  - Fabric (~> 1.9.0)
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Messaging
@@ -167,7 +172,6 @@ DEPENDENCIES:
   - FirebaseUI/Auth
   - FirebaseUI/Email
   - FirebaseUI/Google
-  - GoogleSignIn
   - MessageInputBar
   - MessageKit
   - PromiseKit (~> 6.8)
@@ -178,6 +182,8 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL-GRPC
     - Charts
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -208,6 +214,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
   Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
   FirebaseAnalytics: 75e4bbc6417d190cc98ec1f17c41a4fad4c2c976
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
@@ -235,6 +243,6 @@ SPEC CHECKSUMS:
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
 
-PODFILE CHECKSUM: e0f4a12237b32f865df5b463a79b54503fe80c72
+PODFILE CHECKSUM: 910cb733c227003a65948e12307436f15ce8b810
 
 COCOAPODS: 1.6.0

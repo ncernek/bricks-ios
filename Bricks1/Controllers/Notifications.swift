@@ -40,7 +40,7 @@ class Notifications {
         body: "What's your top task today?",
         category: "REMINDERS",
         isRepeating: true,
-        hour: 12,
+        hour: 10,
         minute: 15
     )
 
@@ -49,8 +49,9 @@ class Notifications {
         title: "Grade your task",
         body: "On a scale of 0 to 5, how well did you do your task today?",
         category: "REMINDERS",
-        isRepeating: true,
-        hour: 21
+        isRepeating: false,
+        hour: 21,
+        minute: 0
     )
 
     static let notifTaskChosen = Notif(
@@ -95,9 +96,12 @@ class Notifications {
         var trigger: UNNotificationTrigger
         
         if repeats {
-            trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: notif.hour), repeats: true)}
-        else {
-            trigger = UNTimeIntervalNotificationTrigger(timeInterval: notif.timeInterval, repeats: false)}
+            trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: notif.hour, minute: notif.minute), repeats: true)
+        } else if notif.hour != nil {
+            trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: notif.hour, minute: notif.minute), repeats: false)
+        } else {
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: notif.timeInterval, repeats: false)
+        }
         
         let request = UNNotificationRequest(identifier: notif.notifId, content: content, trigger: trigger)
         

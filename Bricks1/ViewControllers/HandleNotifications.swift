@@ -48,8 +48,6 @@ extension LandingVC: UNUserNotificationCenterDelegate {
             Notifications.userNotifCenter.delegate = self
             Notifications.setNotificationCategories()
             Notifications.createLocalNotification(Notifications.notifChooseTask, repeats: true)
-            Notifications.createLocalNotification(Notifications.notifGradeTask, repeats: true)
-
         }
     }
     
