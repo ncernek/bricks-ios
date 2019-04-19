@@ -66,4 +66,9 @@ class AppConfig {
     var DEMO_ACCOUNT_GOOGLE_ID : String {
         return config["DEMO_ACCOUNT_GOOGLE_ID"] as! String
     }
+    
+    // APP VERSION
+    var APP_VERSION : String {
+        return config["CFBundleShortVersionString"] as! String
+    }
 }

@@ -7,10 +7,12 @@ class SettingsVC: UIViewController {
     
     @IBOutlet var taskNotifSwitch: UISwitch!
     @IBOutlet var messageNotifSwitch: UISwitch!
+    @IBOutlet var appVersion: UILabel!
     
     override func viewDidLoad() {
         taskNotifSwitch.isOn = store.state.appUser!.taskNotifs
         messageNotifSwitch.isOn = store.state.appUser!.chatNotifs
+        appVersion.text = "Version \(AppConfig().APP_VERSION)"
     }
     
     @IBAction func triggerJoinTeam(_ sender: Any) {

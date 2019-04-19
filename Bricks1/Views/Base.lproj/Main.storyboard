@@ -467,7 +467,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bRy-X0-JEv">
-                                <rect key="frame" x="20" y="108" width="374" height="380"/>
+                                <rect key="frame" x="20" y="108" width="374" height="416.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify me when" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psD-j0-X9B">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
@@ -548,6 +548,12 @@
                                             <action selector="triggerSignOut:" destination="ObU-iU-95N" eventType="touchUpInside" id="pRm-cw-5Hk"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpJ-UU-nWD">
+                                        <rect key="frame" x="0.0" y="396" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -561,6 +567,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="appVersion" destination="GpJ-UU-nWD" id="oBp-Mm-LFf"/>
                         <outlet property="messageNotifSwitch" destination="SOU-2F-njq" id="BuF-7b-pzr"/>
                         <outlet property="taskNotifSwitch" destination="sFc-LF-bsT" id="ZHs-DT-OYg"/>
                     </connections>
