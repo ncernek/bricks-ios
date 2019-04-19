@@ -41,7 +41,7 @@ class Notifications {
         category: "REMINDERS",
         isRepeating: true,
         hour: 10,
-        minute: 15
+        minute: 0
     )
 
     static let notifGradeTask = Notif(
