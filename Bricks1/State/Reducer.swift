@@ -14,7 +14,7 @@ func appReducer(action: Action, state: AppState?) -> AppState {
         state.totalUnreadMessageCount = 0
     
     case let action as SaveFIRPushNotifToken:
-        state.firPushNotifToken = action.token
+        state.firPushNotifToken = action.firPushNotifToken
         
     case let action as SaveFIRToken:
         state.firToken = action.firToken

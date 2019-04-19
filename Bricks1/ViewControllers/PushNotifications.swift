@@ -13,7 +13,7 @@ extension AppDelegate: MessagingDelegate {
             if let error = error {
                 print("Error fetching remote instance ID: \(error)")
             } else if let result = result {
-                store.dispatch(SaveFIRPushNotifToken(token : result.token))
+                store.dispatch(SaveFIRPushNotifToken(firPushNotifToken : result.token))
 //                Fetch.putAppUser(["": result.token])
             }
         }
