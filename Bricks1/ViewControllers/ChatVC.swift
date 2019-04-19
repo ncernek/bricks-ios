@@ -77,9 +77,11 @@ final class ChatVC: MessagesViewController {
     // MARK: - Helpers
     
     func scrollToBottom() {
-        let lastSection = messages.count - 1
-        let indexPath = IndexPath(item: 0, section: lastSection)
-        messagesCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: false)
+        if messages.count > 0 {
+            let lastSection = messages.count - 1
+            let indexPath = IndexPath(item: 0, section: lastSection)
+            messagesCollectionView.scrollToItem(at: indexPath, at: .bottom, animated: false)
+        }
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
