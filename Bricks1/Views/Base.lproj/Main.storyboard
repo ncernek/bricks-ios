@@ -374,6 +374,71 @@
             </objects>
             <point key="canvasLocation" x="2031.8840579710147" y="133.25892857142856"/>
         </scene>
+        <!--Choose Task-->
+        <scene sceneID="s85-oI-byA">
+            <objects>
+                <viewController storyboardIdentifier="ChooseTask" title="Choose Task" id="sqQ-fC-xya" customClass="ChooseTaskVC" customModule="Bricks1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AG9-R0-4UL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qRr-8E-rAZ">
+                                <rect key="frame" x="20" y="154" width="374" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="7lE-c0-8uX"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your top task?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5I-Y5-kLa">
+                                <rect key="frame" x="82" y="114" width="250" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="6vt-Iz-bow"/>
+                                    <constraint firstAttribute="height" constant="25" id="xhW-vv-0m3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfT-ng-jHm">
+                                <rect key="frame" x="346" y="54" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="triggerCancel:" destination="sqQ-fC-xya" eventType="touchUpInside" id="yDa-iq-YnK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2w-9Z-syE">
+                                <rect key="frame" x="180" y="84" width="54" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="x5I-Y5-kLa" firstAttribute="centerX" secondItem="AG9-R0-4UL" secondAttribute="centerX" id="0kD-Mc-Yx5"/>
+                            <constraint firstItem="qRr-8E-rAZ" firstAttribute="top" secondItem="xkI-Zn-ZGV" secondAttribute="top" constant="110" id="2zV-Zg-41R"/>
+                            <constraint firstItem="qRr-8E-rAZ" firstAttribute="leading" secondItem="xkI-Zn-ZGV" secondAttribute="leading" constant="20" id="8JQ-y0-EEg"/>
+                            <constraint firstItem="x5I-Y5-kLa" firstAttribute="top" secondItem="xkI-Zn-ZGV" secondAttribute="top" constant="70" id="M9F-kj-cb7"/>
+                            <constraint firstItem="xkI-Zn-ZGV" firstAttribute="trailing" secondItem="cfT-ng-jHm" secondAttribute="trailing" constant="20" id="YHv-xh-yok"/>
+                            <constraint firstItem="W2w-9Z-syE" firstAttribute="centerX" secondItem="AG9-R0-4UL" secondAttribute="centerX" id="aKo-54-VOh"/>
+                            <constraint firstItem="xkI-Zn-ZGV" firstAttribute="trailing" secondItem="qRr-8E-rAZ" secondAttribute="trailing" constant="20" id="hER-m6-UH2"/>
+                            <constraint firstItem="cfT-ng-jHm" firstAttribute="top" secondItem="xkI-Zn-ZGV" secondAttribute="top" constant="10" id="qTh-2U-L82"/>
+                            <constraint firstItem="W2w-9Z-syE" firstAttribute="top" secondItem="xkI-Zn-ZGV" secondAttribute="top" constant="40" id="tkD-yU-es3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xkI-Zn-ZGV"/>
+                    </view>
+                    <connections>
+                        <outlet property="promptTitle" destination="W2w-9Z-syE" id="8pX-b2-Oq2"/>
+                        <outlet property="textField" destination="qRr-8E-rAZ" id="urX-rg-MGs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iTH-zn-vJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2840.579710144928" y="486.83035714285711"/>
+        </scene>
         <!--Team-->
         <scene sceneID="7z5-F8-EHI">
             <objects>
@@ -456,7 +521,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7h2-dJ-9Df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2832.8000000000002" y="492.50374812593708"/>
+            <point key="canvasLocation" x="3613" y="487"/>
         </scene>
         <!--Menu-->
         <scene sceneID="8Bp-l3-sSO">

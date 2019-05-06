@@ -214,7 +214,12 @@ class LandingVC: UIViewController, StoreSubscriber, UITableViewDataSource {
     }
     
     @objc func _chooseTask(_ sender: UIButton) {
-        Alerts.chooseTask(self, dueDelta: sender.tag)
+        let chooseTaskVC = storyboard?.instantiateViewController(withIdentifier: "ChooseTask") as! ChooseTaskVC
+        chooseTaskVC.dueDelta = sender.tag
+        chooseTaskVC.providesPresentationContextTransitionStyle = true
+        chooseTaskVC.definesPresentationContext = true
+        chooseTaskVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
+        self.present(chooseTaskVC, animated: true, completion: nil)
     }
     
     @objc func _gradeTask(_ sender: UIButton) {
