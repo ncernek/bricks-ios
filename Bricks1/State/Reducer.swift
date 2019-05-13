@@ -76,6 +76,9 @@ func appReducer(action: Action, state: AppState?) -> AppState {
     case let action as UpdateMonthlyGoal:
         state.monthlyGoal = action.goal
         
+    case let action as UpdateMonthlyContentGoal:
+        state.monthlyContentGoal = action.goal
+        
     default:
         break
     }

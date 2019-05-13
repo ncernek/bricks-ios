@@ -82,3 +82,7 @@ struct UpdateMonthlyGoal: Action {
 struct SaveAppUser: Action {
     let appUser: AppUser
 }
+
+struct UpdateMonthlyContentGoal: Action {
+    let goal: String
+}

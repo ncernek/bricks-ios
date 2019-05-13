@@ -164,7 +164,7 @@ class Alerts {
             alertController.addAction(
                 UIAlertAction(title: String(num), style: .default, handler: {action in
                     store.dispatch(UpdateMonthlyGoal(goal: num))
-                    FIRFetch.postGoal(num)
+                    FIRFetch.setGoal(num)
                 }))
         }
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
